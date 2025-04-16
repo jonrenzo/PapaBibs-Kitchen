@@ -7,7 +7,7 @@
     @vite('resources/js/app.js')
     <title>Admin Panel | PapaBibs Kitchen</title>
 </head>
-<body>
+<body class="font-parkinsans">
 <x-admin-layout>
     <h1>Add Product</h1>
 
@@ -95,7 +95,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const fileInput = document.getElementById('image-location');
+        const fileInput = document.getElementById('image_location');
         const previewContainer = fileInput.closest('label.group');
         const previewText = previewContainer.querySelector('span.text-sm');
         const previewSubText = previewContainer.querySelector('span.text-xs');

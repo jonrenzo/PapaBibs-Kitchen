@@ -5,6 +5,7 @@ hs-overlay-open:translate-x-0
 h-full
 hidden
 fixed top-0 start-0 bottom-0 z-60
+font-parkinsans
 bg-white border-e border-gray-200" role="dialog" tabindex="-1" aria-label="Sidebar" >
     <!-- Your sidebar content remains unchanged -->
     <div class="relative flex flex-col h-full max-h-full ">
