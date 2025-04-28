@@ -1,16 +1,22 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
-Route::view('/', 'user.index');
+Route::get('/', fn() => view('user.index', ['products' => Product::all()]));
+Route::get('/menu', fn() => view('user.menu', ['products' => Product::all()]));
+Route::get('/login', fn() => view('user.login', ['products' => Product::all()]));
+Route::get('/register', fn() => view('user.register', ['products' => Product::all()]));
 
-Route::get('/menu', function () {
-    return view('user.menu');
-});
+// Admin-related routes
 
+Route::get('admin/login', [AdminController::class, 'create']);
+Route::post('admin/login', [AdminController::class, 'store']);
 
-// Admin Related Routes
-Route::view('/admin','admin.index');
+Route::get('/admin', fn() => view('admin.index', ['product' => Product::all(), 'users' => User::all()]));
+Route::view('/admin/users', 'admin.users.index', ['users' => User::all()]);
 Route::resource('admin/products', ProductController::class);

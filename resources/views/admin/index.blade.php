@@ -10,6 +10,7 @@
 <body class="font-parkinsans bg-gray-100">
 
 <x-admin-layout>
+    <h1 class="text-2xl font-bold">Dashboard</h1>
     <!-- Card Section -->
     <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <!-- Grid -->
@@ -21,8 +22,8 @@
                 </div>
 
                 <div class="text-center">
-                    <h3 class="text-7xl font-semibold text-green-700">
-                        0
+                    <h3 class="text-7xl font-semibold text-green-700 confetti-run">
+                        {{ count($product) }}
                     </h3>
                 </div>
             </div>
@@ -35,8 +36,8 @@
                 </div>
 
                 <div class="text-center">
-                    <h3 class="text-7xl font-semibold text-green-700">
-                        0
+                    <h3 class="text-7xl font-semibold text-green-700 confetti-run">
+                        {{ count($users) }}
                     </h3>
                 </div>
             </div>
@@ -49,7 +50,7 @@
                 </div>
 
                 <div class="text-center">
-                    <h3 class="text-7xl font-semibold text-green-700">
+                    <h3 class="text-7xl font-semibold text-green-700 confetti-run">
                         0
                     </h3>
                 </div>
@@ -59,7 +60,73 @@
         <!-- End Grid -->
     </div>
     <!-- End Card Section -->
+
+    <h1 class="text-2xl font-bold">Reports</h1>
 </x-admin-layout>
+
+
+<!-- Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+    (function() {
+        const runConfettiElements = document.querySelectorAll('.confetti-run');
+        runConfettiElements.forEach(element => {
+            element.addEventListener('click', () => {
+                // confetti({
+                //     angle: randomInRange(55, 125),
+                //     spread: randomInRange(50, 70),
+                //     particleCount: randomInRange(50, 100),
+                //     origin: { y: 0.6 }
+                // });
+                realistic();
+            });
+        });
+    })();
+
+    function realistic(){
+        var count = 200;
+        var defaults = {
+            origin: { y: 0.7 }
+        };
+
+        function fire(particleRatio, opts) {
+            confetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(count * particleRatio)
+            });
+        }
+
+        fire(0.25, {
+            spread: 26,
+            startVelocity: 55,
+        });
+        fire(0.2, {
+            spread: 60,
+        });
+        fire(0.35, {
+            spread: 100,
+            decay: 0.91,
+            scalar: 0.8
+        });
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 25,
+            decay: 0.92,
+            scalar: 1.2
+        });
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 45,
+        });
+    }
+
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+</script>
+
 
 </body>
 </html>

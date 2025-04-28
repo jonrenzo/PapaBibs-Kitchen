@@ -34,73 +34,24 @@
     <div class="bg-white h-[1099px] w-[1146px] rounded-4xl mx-auto mt-5 mb-5">
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+            @foreach($products as $product)
             <!-- Card -->
-            <div class="bg-white border rounded-lg shadow-sm p-4 pl-2 flex flex-col items-center text-center h-[466px] w-[320px] m-7">
-                <img src="./images/chicken-pastil.png" alt="Chicken Pastil" class="h-44 object-cover rounded-full mb-2">
-                <div class="pl-4 mb-8">
-                    <h1 class="text-xl font-extrabold text-black text-left">Chicken<br>Pastil</h1>
-                    <p class="text-bibs-red font-normal mt-1 text-left">PHP 180.00</p>
-                    <p class="text-sm text-black mt-2 text-left">Homemade taste chicken pastil native from Maguindanao, shredded chicken cooked with aromatics from Mindanao.</p>
+                <div class="bg-white border-2 border-dashed border-bibs-red rounded-lg shadow-lg p-4 pl-2 flex flex-col justify-between text-center h-[466px] w-[320px] m-7">
+                    <div class="flex flex-col items-center">
+                        <img src="/{{ $product->image_location }}" alt="{{ $product->name }}" class="h-44 object-cover rounded-full mb-2">
+                        <div class="pl-4 mb-8">
+                            <h1 class="text-xl font-extrabold text-black text-left">{{ $product->name }}</h1>
+                            <p class="text-bibs-red font-normal mt-1 text-left">PHP {{ number_format($product->price, 2) }}</p>
+                            <p class="text-sm text-black mt-2 text-left">{{ $product->description }}.</p>
+                        </div>
+                    </div>
+                    <button class="transition-all duration-200 mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px] mx-auto">
+                        Add to cart
+                    </button>
                 </div>
-                <button class="mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px]">Add to cart</button>
-            </div>
-            <!-- End Card -->
-            <!-- Card -->
-            <div class="bg-white border border-dashed border-bibs-red rounded-lg shadow-sm p-4 pl-2 flex flex-col items-center text-center h-[466px] w-[320px] m-7">
-                <img src="./images/chicken-pastil.png" alt="Chicken Pastil" class="h-44 object-cover rounded-full mb-2">
-                <div class="pl-4 mb-8">
-                    <h1 class="text-xl font-extrabold text-black text-left">Chicken<br>Pastil</h1>
-                    <p class="text-bibs-red font-normal mt-1 text-left">PHP 180.00</p>
-                    <p class="text-sm text-black mt-2 text-left">Homemade taste chicken pastil native from Maguindanao, shredded chicken cooked with aromatics from Mindanao.</p>
-                </div>
-                <button class="mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px]">Add to cart</button>
-            </div>
-            <!-- End Card -->
-            <!-- Card -->
-            <div class="bg-white border border-dashed border-bibs-red rounded-lg shadow-sm p-4 pl-2 flex flex-col items-center text-center h-[466px] w-[320px] m-7">
-                <img src="./images/chicken-pastil.png" alt="Chicken Pastil" class="h-44 object-cover rounded-full mb-2">
-                <div class="pl-4 mb-8">
-                    <h1 class="text-xl font-extrabold text-black text-left">Chicken<br>Pastil</h1>
-                    <p class="text-bibs-red font-normal mt-1 text-left">PHP 180.00</p>
-                    <p class="text-sm text-black mt-2 text-left">Homemade taste chicken pastil native from Maguindanao, shredded chicken cooked with aromatics from Mindanao.</p>
-                </div>
-                <button class="mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px]">Add to cart</button>
-            </div>
-            <!-- End Card -->
-            <!-- Card -->
-            <div class="bg-white border border-dashed border-bibs-red rounded-lg shadow-sm p-4 pl-2 flex flex-col items-center text-center h-[466px] w-[320px] m-7">
-                <img src="./images/chicken-pastil.png" alt="Chicken Pastil" class="h-44 object-cover rounded-full mb-2">
-                <div class="pl-4 mb-8">
-                    <h1 class="text-xl font-extrabold text-black text-left">Chicken<br>Pastil</h1>
-                    <p class="text-bibs-red font-normal mt-1 text-left">PHP 180.00</p>
-                    <p class="text-sm text-black mt-2 text-left">Homemade taste chicken pastil native from Maguindanao, shredded chicken cooked with aromatics from Mindanao.</p>
-                </div>
-                <button class="mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px]">Add to cart</button>
-            </div>
-            <!-- End Card -->
-            <!-- Card -->
-            <div class="bg-white border border-dashed border-bibs-red rounded-lg shadow-sm p-4 pl-2 flex flex-col items-center text-center h-[466px] w-[320px] m-7">
-                <img src="./images/chicken-pastil.png" alt="Chicken Pastil" class="h-44 object-cover rounded-full mb-2">
-                <div class="pl-4 mb-8">
-                    <h1 class="text-xl font-extrabold text-black text-left">Chicken<br>Pastil</h1>
-                    <p class="text-bibs-red font-normal mt-1 text-left">PHP 180.00</p>
-                    <p class="text-sm text-black mt-2 text-left">Homemade taste chicken pastil native from Maguindanao, shredded chicken cooked with aromatics from Mindanao.</p>
-                </div>
-                <button class="mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px]">Add to cart</button>
-            </div>
-            <!-- End Card -->
-            <!-- Card -->
-            <div class="bg-white border border-dashed border-bibs-red rounded-lg shadow-sm p-4 pl-2 flex flex-col items-center text-center h-[466px] w-[320px] m-7">
-                <img src="./images/chicken-pastil.png" alt="Chicken Pastil" class="h-44 object-cover rounded-full mb-2">
-                <div class="pl-4 mb-8">
-                    <h1 class="text-xl font-extrabold text-black text-left">Chicken<br>Pastil</h1>
-                    <p class="text-bibs-red font-normal mt-1 text-left">PHP 180.00</p>
-                    <p class="text-sm text-black mt-2 text-left">Homemade taste chicken pastil native from Maguindanao, shredded chicken cooked with aromatics from Mindanao.</p>
-                </div>
-                <button class="mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px]">Add to cart</button>
-            </div>
-            <!-- End Card -->
 
+            <!-- End Card -->
+            @endforeach
         </div>
 
 

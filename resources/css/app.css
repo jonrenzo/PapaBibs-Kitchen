@@ -13,8 +13,15 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
     --font-kimbab : 'Kimbab', ui-sans-serif;
+    --font-poppins : 'Poppins', ui-sans-serif;
     --font-parkinsans: 'Parkinsans', ui-sans-serif;
 
     --color-bibs-yellow: #FFC100;
     --color-bibs-red: #C40C0C;
+}
+
+.dt-layout-row:has(.dt-search),
+.dt-layout-row:has(.dt-length),
+.dt-layout-row:has(.dt-paging) {
+    display: none !important;
 }

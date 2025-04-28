@@ -11,6 +11,8 @@
 
 <x-admin-layout>
     <h1 class="font-bold text-2xl">Products</h1>
+
+
     <!-- Table Section -->
     <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <!-- Card -->
@@ -32,18 +34,52 @@
                                 </div>
                             </div>
                             <!-- End Input -->
+
+                            <div>
+                                <a href="/admin/products/create">
+                                    <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                         <!-- End Header -->
 
                         <!-- Table -->
-                        <table class="min-w-full divide-y divide-gray-200">
+                        <table class="min-w-full divide-y divide-gray-200" id="products-table">
                             <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">ID</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">Product</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">Price</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">Description</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">Actions</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
+                                    <div class="flex">
+                                        ID
+                                        <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
+                                        </svg>
+                                    </div></th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
+                                    <div class="flex">
+                                        Product
+                                        <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
+                                        </svg>
+                                    </div></th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
+                                    <div class="flex">
+                                        Price
+                                        <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
+                                        </svg>
+                                    </div>
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
+                                    <div class="flex">
+                                        Description
+                                        <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
+                                        </svg>
+                                    </div>
+                                </th>
+                                <th class="px-6 py-3 text-center text-xs font-semibold uppercase text-gray-800">Actions</th>
                             </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
@@ -65,7 +101,7 @@
                                         {{ $product->description }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="flex items-center space-x-3">
+                                        <div class="flex items-center space-x-3 justify-center">
                                             <!-- Edit Product -->
                                             <a href="/admin/products/{{ $product->id }}/edit" class="text-green-600 hover:text-green-800">
                                                 <svg class="w-6 h-6 text-green-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -91,8 +127,8 @@
                         <!-- End Table -->
 
                         <!-- Footer -->
-                        <div class="px-6 py-4 border-t border-gray-200 text-sm text-gray-500">
-                            <!-- Optional: Pagination or footer info here -->
+                        <div class="px-6 py-4 border-t border-gray-200 text-sm text-gray-500 text-right">
+                            Total of <span class="font-bold text-bibs-red"> {{ count($products) }} </span> Products
                         </div>
                         <!-- End Footer -->
                     </div>
@@ -102,8 +138,26 @@
         <!-- End Card -->
     </div>
     <!-- End Table Section -->
-
 </x-admin-layout>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        var table = $('#products-table').DataTable({
+            dom: 't',
+        });
+        $('#product-search').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+    });
+</script>
+
 
 </body>
 </html>

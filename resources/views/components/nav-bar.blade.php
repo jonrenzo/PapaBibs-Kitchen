@@ -30,20 +30,20 @@
         <div id="hs-header-scrollspy" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:block" aria-labelledby="hs-header-scrollspy-collapse">
             <div class="overflow-hidden overflow-y-auto max-h-[75vh] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
                 <div data-hs-scrollspy="#scrollspy" class="py-2 md:py-0 [--scrollspy-offset:220] md:[--scrollspy-offset:70] flex flex-col md:flex-row md:items-center md:justify-end gap-0.5 md:gap-1 h-16">
-                    <a class="font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('/') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" href="/">
+                    <a class="transition-all duration-300 font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('/') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" href="/">
                         <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
                         Home
                     </a>
 
-                    <a class="font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('menu') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" href="/menu">
+                    <a class="transition-all duration-300  font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('menu') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" href="/menu">
                     <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         Menu
                     </a>
 
-                    <a class="font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('my-cart') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" href="#landing">
+                    <button class="transition-all duration-300  font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('my-cart') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">
                         <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12h.01"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M22 13a18.15 18.15 0 0 1-20 0"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
                         My Cart
-                    </a>
+                    </button>
 
                     <div class="relative">
                         <input type="text" class="font-parkinsans text-bibs-red bg-white font-medium py-2 px-6 rounded-full shadow-sm w-32" placeholder="Search">
@@ -61,7 +61,7 @@
                         </svg>
                     </a>
 
-                    <a class="font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('sign-in') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" href="#landing">
+                    <a href="/login" class="transition-all duration-300  font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('sign-in') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}">
                         <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12h.01"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M22 13a18.15 18.15 0 0 1-20 0"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
                         Sign In
                     </a>
@@ -72,4 +72,72 @@
     </nav>
 </header>
 <!-- ========== END HEADER ========== -->
+
+<div id="hs-offcanvas-right" class="hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-1/2 end-0 -translate-y-1/2 transition-all duration-300 transform h-[95%] w-[653px] z-80 bg-white border-s border-gray-200 rounded-l-xl" role="dialog" tabindex="-1" aria-labelledby="hs-offcanvas-right-label">
+    <div class="flex justify-between items-center py-3 px-4 mt-8 ml-4">
+        <h3 id="hs-offcanvas-right-label" class="font-bold font-parkinsans text-black text-4xl">
+            My Cart
+        </h3>
+        <a class="mr-2 bg-bibs-red font-parkinsans rounded-full text-white text-sm py-2 px-4 cursor-pointer">
+            Clear All
+        </a>
+    </div>
+    <div class="p-4">
+        <!-- Cart Item 1 -->
+        <div class="flex items-center justify-between p-4 border border-dashed border-gray-200 rounded-lg mb-4">
+            <div class="flex items-center">
+                <div class="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center overflow-hidden">
+                    <img src="path-to-your-food-image.jpg" alt="Food Image" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <div class="flex flex-col items-start ml-4">
+                <h2 class="text-xl font-bold">Sample Item 1</h2>
+                <p class="text-red-600 font-medium mt-2">PHP 360.00</p>
+            </div>
+
+            <div class="flex items-center">
+                <button class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+                    <span class="text-xl">+</span>
+                </button>
+                <span class="mx-4 text-xl">2</span>
+                <button class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+                    <span class="text-xl">-</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Cart Item 2 -->
+        <div class="flex items-center justify-between p-4 border border-dashed border-gray-200 rounded-lg mb-4">
+            <div class="flex items-center">
+                <div class="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center overflow-hidden">
+                    <img src="path-to-your-food-image.jpg" alt="Food Image" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <div class="flex flex-col items-start ml-4">
+                <h2 class="text-xl font-bold">Sample Item 2</h2>
+                <p class="text-red-600 font-medium mt-2">PHP 360.00</p>
+            </div>
+
+            <div class="flex items-center">
+                <button class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+                    <span class="text-xl">+</span>
+                </button>
+                <span class="mx-4 text-xl">2</span>
+                <button class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+                    <span class="text-xl">-</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Total Section -->
+        <div class="mt-8 pt-4 border-t border-gray-200">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-bold">Total</h3>
+                <p class="text-xl font-bold">PHP 720.00</p>
+            </div>
+        </div>
+    </div>
+</div>
 
