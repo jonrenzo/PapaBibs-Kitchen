@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -59,8 +60,15 @@ class ProductController extends Controller
         return redirect('/admin/products');
     }
 
-    public function destroy(Product $product){
-        $product->delete();
-        return redirect('/admin/products');
-    }
+        public function destroy(Product $product){
+            $imagePath = public_path($product->image_location);
+
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
+
+            $product->delete();
+
+            return redirect('/admin/products');
+        }
 }

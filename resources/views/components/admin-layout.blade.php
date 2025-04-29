@@ -107,6 +107,16 @@ bg-white border-e border-gray-200" role="dialog" tabindex="-1" aria-label="Sideb
                             </ul>
                         </div>
                     </li>
+                    <!-- Orders -->
+                    <li class="hs-accordion" id="account-accordion">
+                        <a href="/orders" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 {{ request()->is('transactions') ? 'bg-gray-200' : '' }} text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden ">
+                            <svg class="size-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7h-1M8 7h-.688M13 5v4m-2-2h4"/>
+                            </svg>
+
+                            Orders
+                        </a>
+                    </li>
                     <!-- Transaction History -->
                     <li class="hs-accordion" id="account-accordion">
                         <a href="/transactions" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 {{ request()->is('transactions') ? 'bg-gray-200' : '' }} text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden ">
