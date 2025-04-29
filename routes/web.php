@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 // User Routes
 Route::get('/', fn() => view('user.index', ['products' => Product::all()]));
 Route::get('/menu', fn() => view('user.menu', ['products' => Product::all()]));
+Route::get('/menu/{product}', [ProductController::class, 'show']);
 Route::get('/login', fn() => view('user.login', ['products' => Product::all()]));
 Route::get('/register', fn() => view('user.register', ['products' => Product::all()]));
 Route::get('/feedback', fn() => view('user.feedback'));

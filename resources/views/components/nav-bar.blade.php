@@ -10,7 +10,7 @@
         <div class="flex items-center justify-between">
             <!-- Logo -->
             <a class="flex-none rounded-md text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80" href="/">
-                <img src="./images/Logo-Txt.png" class="h-16">
+                <img src="{{ asset('images/Logo-Txt.png') }}" class="h-16">
             </a>
             <!-- End Logo -->
 

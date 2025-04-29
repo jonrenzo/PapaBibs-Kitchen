@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
+
     public function index(){
         $products = Product::all();
         return view('admin.products.index', ['products' => $products]);
@@ -43,8 +44,9 @@ class ProductController extends Controller
         return redirect('/admin/products');
     }
 
-    public function show($id){
-
+    public function show(Product $product){
+        $recommendedProducts = Product::where('id', '!=', $product->id)->take(5)->get();
+        return view('user.products.show', ['product' => $product, 'recommendedProducts' => $recommendedProducts]);
     }
 
     public function edit(Product $product){

@@ -1,6 +1,6 @@
 <x-layout>
 
-    <div class="h-full pt-4">
+    <div class="h-full pt-4 bg-gray-100">
         <!-- ========== HEADER ========== -->
         <header class="top-4 max-w-5xl inset-x-0 flex flex-wrap mx-auto   md:flex-nowrap z-50 w-full bg-white shadow-md rounded-full">
             <nav class="relative max-w-5xl w-full py-2.5 ps-5 pe-2 md:flex md:items-center md:justify-between md:py-0 mx-2 lg:mx-auto">
@@ -22,10 +22,10 @@
 
         <div class="bg-white h-[1099px] w-[1146px] rounded-4xl mx-auto mt-5 mb-5">
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white rounded-2xl">
                 @foreach($products as $product)
                     <!-- Card -->
-                    <div class="bg-white border-2 border-dashed border-bibs-red rounded-lg shadow-lg p-4 pl-2 flex flex-col justify-between text-center h-[466px] w-[320px] m-7">
+                    <a href="/menu/{{ $product->id }}" class="bg-white border-2 border-dashed border-bibs-red rounded-lg shadow-lg p-4 pl-2 flex flex-col justify-between text-center h-[466px] w-[320px] m-7">
                         <div class="flex flex-col items-center">
                             <img src="/{{ $product->image_location }}" alt="{{ $product->name }}" class="h-44 object-cover rounded-full mb-2">
                             <div class="pl-4 mb-8">
@@ -37,7 +37,7 @@
                         <button class="transition-all duration-200 mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px] mx-auto">
                             Add to cart
                         </button>
-                    </div>
+                    </a>
                     <!-- End Card -->
                 @endforeach
             </div>
