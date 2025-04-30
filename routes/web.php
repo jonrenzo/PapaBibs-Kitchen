@@ -15,8 +15,17 @@ Route::get('/register', fn() => view('user.register', ['products' => Product::al
 Route::get('/feedback', fn() => view('user.feedback'));
 
 // Admin-related Routes
-Route::get('admin/login', [AdminController::class, 'create']);
+Route::get('admin/login', [AdminController::class, 'create'])->name('login');
 Route::post('admin/login', [AdminController::class, 'store']);
-Route::get('/admin', fn() => view('admin.index', ['product' => Product::all(), 'users' => User::all()]));
+
+Route::post('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+
+Route::get('/admin', function () {
+    return view('admin.index', [
+        'product' => Product::all(),
+        'users' => User::all()
+    ]);
+})->middleware('auth:admin');
+
 Route::view('/admin/users', 'admin.users.index', ['users' => User::all()]);
 Route::resource('admin/products', ProductController::class);

@@ -12,23 +12,29 @@ class AdminController extends Controller
         return view('admin.log-in');
     }
 
-    public function store(Request $request) {
-        //validate
-        $validAdmin = request()->validate([
-           'username' => 'required',
-           'password' => 'required'
+    public function store(Request $request){
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
-        if (Auth::guard('admin')->attempt($validAdmin)) {
+        if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect('/admin');
-        }else{
-            return redirect('/admin/login');
         }
+
+        return back()->withErrors([
+            'username' => 'Invalid credentials.',
+        ])->onlyInput('username');
     }
 
-    public function destroy() {
-        Auth::logout();
+
+    public function destroy(Request $request){
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect('/admin/login');
     }
 }

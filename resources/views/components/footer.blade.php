@@ -16,7 +16,7 @@
         <a class="pt-2">About Us</a>
         <a class="pt-2">Contact Us</a>
         <a href="/feedback" class="pt-2">Send a Feedback</a>
-        <a href="/admin/login" class="pt-2 text-black">Admin</a>
+        <a href="/admin" class="pt-2 text-black">Admin</a>
     </div>
 
     <div class="text-white p-24">
