@@ -13,6 +13,7 @@ Route::get('/menu/{product}', [ProductController::class, 'show']);
 Route::get('/login', fn() => view('user.login', ['products' => Product::all()]));
 Route::get('/register', fn() => view('user.register', ['products' => Product::all()]));
 Route::get('/feedback', fn() => view('user.feedback'));
+Route::get('/checkout', fn() => view('user.checkout'));
 
 // Admin-related Routes
 Route::get('admin/login', [AdminController::class, 'create'])->name('login');

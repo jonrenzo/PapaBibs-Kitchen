@@ -119,9 +119,9 @@
     </div>
 
     <div class="p-4 border-t border-gray-200 bg-gray-100 inline-flex justify-center">
-        <button class="w-[400px] py-3 bg-bibs-red text-white font-parkinsans rounded-full text-sm">
+        <a class="w-[400px] py-3 bg-bibs-red text-white font-parkinsans rounded-full text-sm text-center"  href="/checkout" >
             Proceed to Checkout
-        </button>
+        </a>
     </div>
 </div>
 
