@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -11,21 +12,25 @@ class ProductController extends Controller
 
     public function index(){
         $products = Product::all();
-        return view('admin.products.index', ['products' => $products]);
+        $tags = Tag::all();
+        return view('admin.products.index', ['products' => $products, 'tags' => $tags]);
     }
 
     public function create(){
-        return view('admin.products.create');
+        $tags = Tag::all();
+        return view('admin.products.create', ['tags' => $tags]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
-            'name'=>['required'],
-            'description'=>['required'],
-            'prep_time'=>['required'],
-            'serving'=>['required'],
-            'price'=>['required'],
-            'image_location'=>['required'],
+            'name' => ['required'],
+            'description' => ['required'],
+            'prep' => ['required'],
+            'serving' => ['required'],
+            'price' => ['required'],
+            'image_location' => ['required'],
+            'tags' => ['array'],
         ]);
 
         $imagePath = null;
@@ -36,17 +41,22 @@ class ProductController extends Controller
             $imagePath = 'images/products/' . $imageName;
         }
 
-        Product::query()->create([
-            'name' => request('name'),
-            'price' => request('price'),
-            'prep_time' => request('prep'),
-            'serving' => request('serving'),
-            'description' => request('description'),
+        $product = Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'prep_time' => $request->prep,
+            'serving' => $request->serving,
+            'description' => $request->description,
             'image_location' => $imagePath,
         ]);
 
+        if ($request->has('tags')) {
+            $product->tags()->attach($request->tags);
+        }
+
         return redirect('/admin/products');
     }
+
 
     public function show(Product $product){
         $recommendedProducts = Product::where('id', '!=', $product->id)->take(5)->get();
@@ -54,15 +64,16 @@ class ProductController extends Controller
     }
 
     public function edit(Product $product){
-        return view('admin.products.edit', ['products' => $product]);
+        return view('admin.products.edit', ['products' => $product, 'tags' => Tag::all()]);
     }
 
-    public function update(Product $product){
+    public function update(Product $product, Request $request){
         $product->update([
             'name' => request('name'),
             'price' => request('price'),
             'description' => request('description'),
         ]);
+        $product->tags()->sync($request->input('tags'));
         return redirect('/admin/products');
     }
 

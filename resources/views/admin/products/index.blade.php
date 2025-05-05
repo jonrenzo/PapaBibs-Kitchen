@@ -103,15 +103,6 @@
                                         </svg>
                                     </div>
                                 </th>
-                                <!-- Description -->
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
-                                    <div class="flex">
-                                        Description
-                                        <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
-                                        </svg>
-                                    </div>
-                                </th>
                                 <!-- Actions -->
                                 <th class="px-6 py-3 text-center text-xs font-semibold uppercase text-gray-800">Actions</th>
                             </tr>
@@ -144,11 +135,7 @@
                                     </td>
                                     <!-- Tags -->
                                     <td class="px-6 py-4 text-sm font-semibold text-gray-800">
-                                        {{ $product->serving }}
-                                    </td>
-                                    <!-- Description -->
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        {{ $product->description }}
+                                        {{ $product->tags->pluck('name')->implode(', ') }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex items-center space-x-3 justify-center">
