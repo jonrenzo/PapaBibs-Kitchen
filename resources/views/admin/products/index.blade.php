@@ -49,20 +49,25 @@
                         <table class="min-w-full divide-y divide-gray-200" id="products-table">
                             <thead class="bg-gray-50">
                             <tr>
+                                <!-- ID -->
                                 <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
                                     <div class="flex">
                                         ID
                                         <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
                                         </svg>
-                                    </div></th>
+                                    </div>
+                                </th>
+                                <!-- Product -->
                                 <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
                                     <div class="flex">
                                         Product
                                         <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
                                         </svg>
-                                    </div></th>
+                                    </div>
+                                </th>
+                                <!-- Price -->
                                 <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
                                     <div class="flex">
                                         Price
@@ -71,6 +76,34 @@
                                         </svg>
                                     </div>
                                 </th>
+                                <!-- Prep Time -->
+                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
+                                    <div class="flex">
+                                        Prep Time
+                                        <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
+                                        </svg>
+                                    </div>
+                                </th>
+                                <!-- Serving -->
+                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
+                                    <div class="flex">
+                                        Serving
+                                        <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
+                                        </svg>
+                                    </div>
+                                </th>
+                                <!-- Tags -->
+                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
+                                    <div class="flex">
+                                        Tags
+                                        <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
+                                        </svg>
+                                    </div>
+                                </th>
+                                <!-- Description -->
                                 <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
                                     <div class="flex">
                                         Description
@@ -79,24 +112,41 @@
                                         </svg>
                                     </div>
                                 </th>
+                                <!-- Actions -->
                                 <th class="px-6 py-3 text-center text-xs font-semibold uppercase text-gray-800">Actions</th>
                             </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
                                 @foreach($products as $product)
                                 <tr class="bg-white hover:bg-gray-50">
+                                    <!-- ID -->
                                     <td class="px-6 py-4 text-sm text-gray-600">
                                         <p>{{ $product->id }}</p>
                                     </td>
+                                    <!-- Product -->
                                     <td class="px-6 py-4">
                                         <p class="flex items-center gap-x-4">
                                             <img class="w-10 h-10 rounded-lg object-cover" src="/{{ $product->image_location }}" alt="Product Image">
                                             <span class="text-sm font-semibold text-gray-800">{{ $product->name }}</span>
                                         </p>
                                     </td>
+                                    <!-- Price -->
                                     <td class="px-6 py-4 text-sm font-semibold text-gray-800">
                                         P{{ number_format($product->price, 2) }}
                                     </td>
+                                    <!-- Prep Time -->
+                                    <td class="px-6 py-4 text-sm font-semibold text-gray-800">
+                                        {{ $product->prep_time }}
+                                    </td>
+                                    <!-- Serving -->
+                                    <td class="px-6 py-4 text-sm font-semibold text-gray-800">
+                                        {{ $product->serving }}
+                                    </td>
+                                    <!-- Tags -->
+                                    <td class="px-6 py-4 text-sm font-semibold text-gray-800">
+                                        {{ $product->serving }}
+                                    </td>
+                                    <!-- Description -->
                                     <td class="px-6 py-4 text-sm text-gray-500">
                                         {{ $product->description }}
                                     </td>

@@ -58,6 +58,42 @@
                         </div>
 
                         <div class="space-y-2">
+                            <label for="prep" class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                Prep Time
+                            </label>
+                            <input
+                                id="prep"
+                                name="prep"
+                                type="text"
+                                class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                placeholder="Enter Product Price"
+                                required
+                                value="{{ $products->prep_time }}"
+                            >
+                            @error('prep')
+                            <p class="font-parkinsans text-bibs-red text-xs"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="serving" class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                Serving For
+                            </label>
+                            <input
+                                id="serving"
+                                name="serving"
+                                type="text"
+                                class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                placeholder="Enter Product Price"
+                                required
+                                value="{{ $products->serving }}"
+                            >
+                            @error('serving')
+                            <p class="font-parkinsans text-bibs-red text-xs"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="space-y-2">
                             <label for="image-location" class="inline-block text-sm font-medium text-gray-800 mt-2.5">
                                 Preview image
                             </label>

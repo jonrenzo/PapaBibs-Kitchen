@@ -22,6 +22,8 @@ class ProductController extends Controller
         $request->validate([
             'name'=>['required'],
             'description'=>['required'],
+            'prep_time'=>['required'],
+            'serving'=>['required'],
             'price'=>['required'],
             'image_location'=>['required'],
         ]);
@@ -37,6 +39,8 @@ class ProductController extends Controller
         Product::query()->create([
             'name' => request('name'),
             'price' => request('price'),
+            'prep_time' => request('prep'),
+            'serving' => request('serving'),
             'description' => request('description'),
             'image_location' => $imagePath,
         ]);

@@ -1,7 +1,7 @@
 <x-layout>
     <div class="max-w-full relative">
         <!-- Background image -->
-        <img src="./images/login-bg.jpg" class="w-full h-auto" />
+        <img src="./images/bg-sign.jpg" class="w-full h-auto" />
 
         <!-- Login form positioned on the right -->
         <div class="absolute top-1/2 right-[15%] transform -translate-y-1/2 w-full max-w-[450px] bg-white p-8 rounded-[40px] shadow-lg z-10">
