@@ -24,7 +24,7 @@
 
                 <div class="text-center">
                     <h3 class="text-7xl font-semibold text-green-700 confetti-run">
-                        {{ count($product) }}
+                        {{ count($products) }}
                     </h3>
                 </div>
             </div>

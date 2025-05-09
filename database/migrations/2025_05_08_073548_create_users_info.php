@@ -15,16 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')
                 ->constrained();
-            $table->string('full_name');
-            $table->string('user_email');
             $table->string('address');
             $table->string('mobile_number');
+            $table->string('date_of_birth');
             $table->timestamps();
 
-            $table->foreign('user_email')
-                ->references('email')
-                ->on('users')
-                ->onDelete('cascade');
         });
     }
 

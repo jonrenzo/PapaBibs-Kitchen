@@ -7,7 +7,7 @@
 
         <div class="absolute inset-0 flex items-center justify-center">
             <div class="flex items-center">
-                <img src="./images/bibs-logo-image.png" class="h-[452px] mt-22">
+                <img src="./images/bibs-logo-image.png" class="h-[452px] mt-22" loading="lazy">
 
                 <div class="ml-30">
                     <h1 class="font-kimbab text-white text-8xl">PapaBibs<br>Kitchen</h1>
@@ -20,7 +20,7 @@
     <!-- BestSeller Content inside Carousel -->
     <div class="h-[700px] bg-[#ffc100] relative">
 
-        <img src="./images/best.png" alt="Our BestSeller" class="h-[250px] mx-auto">
+        <img src="./images/best.png" alt="Our BestSeller" class="h-[250px] mx-auto" loading="lazy">
 
         <!-- Slider -->
         <div data-hs-carousel='{

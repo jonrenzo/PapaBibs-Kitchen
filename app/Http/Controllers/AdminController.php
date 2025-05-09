@@ -3,11 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    public function index(){
+        $products = Product::all();
+        $users = User::all();
+        return view('admin.index', ['products' => $products, 'users' => $users]);
+    }
+
+    public function users()
+    {
+        $users = User::all();
+        return view('admin.users.index', ['users' => $users]);
+    }
+
     public function create() {
         return view('admin.log-in');
     }

@@ -59,7 +59,7 @@
                     @guest
                         <a href="/login" class="transition-all duration-300  font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('sign-in') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}">
                             <svg class="shrink-0 size-4 me-3 md:me-2 block md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12h.01"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M22 13a18.15 18.15 0 0 1-20 0"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
-                            Sign In
+                            Log In
                         </a>
                     @endguest
 
@@ -67,9 +67,7 @@
                         <a href="/login" class="transition-all duration-300  font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('sign-in') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C40C0C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-round-icon lucide-circle-user-round"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>
                         </a>
-
                     @endauth
-
                     <button class="relative inline-flex justify-center items-center size-11 transition-all duration-300 font-parkinsans p-3 text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden overflow-visible {{ request()->is('my-cart') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-basket-icon lucide-shopping-basket"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg>                        <span class="absolute -top-2 -right-3 flex items-center justify-center min-w-[1.5rem] h-6 px-1.5 rounded-full text-xs font-bold bg-bibs-red text-white z-10">
                             0
