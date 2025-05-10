@@ -64,9 +64,43 @@
                     @endguest
 
                     @auth
-                        <a href="/login" class="transition-all duration-300  font-parkinsans p-3  flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('sign-in') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C40C0C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-round-icon lucide-circle-user-round"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>
+                        <a href="/login" class="">
                         </a>
+                        <div class="hs-dropdown [--placement:bottom-right] relative inline-flex">
+                            <button id="hs-dropdown-with-dividers" type="button" class="hs-dropdown-toggle transition-all duration-300  font-parkinsans p-3 flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('login') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C40C0C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-round-icon lucide-circle-user-round"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>
+                            </button>
+
+                            <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 divide-y divide-gray-200" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-with-dividers">
+                                <div class="p-1 space-y-0.5">
+                                    <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" href="{{ route('user.account', ['user' => auth()->id()]) }}">
+                                        My Account
+                                    </a>
+                                    <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" href="#">
+                                        My Orders
+                                    </a>
+                                    <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" href="#">
+                                        Payment Methods
+                                    </a>
+                                </div>
+                                <div class="p-1 space-y-0.5">
+                                    <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" href="#">
+                                        Terms and Conditions
+                                    </a>
+                                </div>
+                                <div class="p-1 space-y-0.5">
+                                    <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" href="#">
+                                        About PapaBibs
+                                    </a>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type="submit" class="flex items-center gap-x-3.5 py-2 px-3 w-full rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100">
+                                            Sign Out
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     @endauth
                     <button class="relative inline-flex justify-center items-center size-11 transition-all duration-300 font-parkinsans p-3 text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden overflow-visible {{ request()->is('my-cart') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-basket-icon lucide-shopping-basket"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg>                        <span class="absolute -top-2 -right-3 flex items-center justify-center min-w-[1.5rem] h-6 px-1.5 rounded-full text-xs font-bold bg-bibs-red text-white z-10">
@@ -96,7 +130,7 @@
         <div class="flex items-center justify-between p-4 border border-dashed border-gray-200 rounded-lg mb-4">
             <div class="flex items-center">
                 <div class="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center overflow-hidden">
-                    <img src="path-to-your-food-image.jpg" alt="Food Image" class="w-full h-full object-cover">
+                    <img src="{{ asset('/images/bibs-logo-image.png') }}" alt="Food Image" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col items-start ml-4">
                     <h2 class="text-xl font-bold">Sample Item 1</h2>

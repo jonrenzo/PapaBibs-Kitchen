@@ -36,7 +36,7 @@
                 <div class="relative min-h-72 -mx-1">
                     <div class="hs-carousel-body m-5 absolute top-0 bottom-0 start-0 flex flex-nowrap justify-center gap-x-4 opacity-0 cursor-grab transition-transform duration-700 hs-carousel-dragging:transition-none hs-carousel-dragging:cursor-grabbing">
 
-                        @foreach($products as $product)
+                        @foreach($products->filter(fn($product) => $product->tags->contains('name', 'Bestseller')) as $product)
                             <div class="hs-carousel-slide px-1">
                                 <a href="#" class="group relative block h-64 w-[333px]">
                                     <span class="absolute inset-0 border-2 border-dashed border-black"></span>
@@ -65,7 +65,6 @@
                                 </a>
                             </div>
                         @endforeach
-
                     </div>
                 </div>
             </div>

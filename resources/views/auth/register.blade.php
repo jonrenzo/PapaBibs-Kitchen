@@ -7,7 +7,7 @@
         <!-- Login form positioned on the right -->
         <div class="absolute top-1/2 right-[15%] transform -translate-y-1/2 w-full max-w-[500px] bg-white p-8 rounded-[40px] shadow-lg z-10">
             <h2 class="text-5xl font-bold text-red-600 mb-6 text-center">Register</h2>
-            <form>
+            <form method="POST" action="/register">
                 @csrf
                 <x-form-input type="email" placeholder="Email Address" name="email" required></x-form-input>
                 <x-form-input type="text" placeholder="Full Name" name="name" required></x-form-input>
