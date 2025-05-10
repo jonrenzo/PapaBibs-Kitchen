@@ -22,7 +22,8 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $attributes = request()->validate([
-            'name' => ['required'],
+            'first_name' => ['required'],
+            'last_name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', Password::min(8), 'confirmed'],
         ]);
@@ -31,7 +32,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('user.account', ['user' => $user->id]);
+        return redirect()->route('user.account.edit', ['user' => $user->id]);
     }
 
 

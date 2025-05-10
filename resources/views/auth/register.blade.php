@@ -10,7 +10,8 @@
             <form method="POST" action="/register">
                 @csrf
                 <x-form-input type="email" placeholder="Email Address" name="email" required></x-form-input>
-                <x-form-input type="text" placeholder="Full Name" name="name" required></x-form-input>
+                <x-form-input type="text" placeholder="First Name" name="first_name" required></x-form-input>
+                <x-form-input type="text" placeholder="Last Name" name="last_name" required></x-form-input>
                 <div class="max-w-full">
                     <div class="relative">
                         <x-form-input id="password" type="password" name="password" placeholder="Password" required></x-form-input>

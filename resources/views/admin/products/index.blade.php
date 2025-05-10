@@ -287,29 +287,43 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize DataTable with buttons configuration
         var table = $('#products-table').DataTable({
-            dom: 't',  // Specify that we want Buttons
+            dom: 't',
             buttons: [
                 {
                     extend: 'copy',
-                    className: 'hidden'
+                    className: 'hidden',
+                    exportOptions: {
+                        columns: ':not(:nth-child(7))'
+                    }
                 },
                 {
                     extend: 'print',
-                    className: 'hidden'
+                    className: 'hidden',
+                    exportOptions: {
+                        columns: ':not(:nth-child(7))'
+                    }
                 },
                 {
                     extend: 'excel',
-                    className: 'hidden'
+                    className: 'hidden',
+                    exportOptions: {
+                        columns: ':not(:nth-child(7))'
+                    }
                 },
                 {
                     extend: 'csv',
-                    className: 'hidden'
+                    className: 'hidden',
+                    exportOptions: {
+                        columns: ':not(:nth-child(7))'
+                    }
                 },
                 {
                     extend: 'pdf',
-                    className: 'hidden'
+                    className: 'hidden',
+                    exportOptions: {
+                        columns: ':not(:nth-child(7))'
+                    }
                 }
             ],
             // Hide the default buttons container

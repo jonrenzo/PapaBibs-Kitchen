@@ -15,7 +15,7 @@
                 <button type="button" class="py-2 px-4 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none">
                     Cancel
                 </button>
-                <button type="button" class="py-2 px-4 rounded-full bg-red-600 text-white hover:bg-red-700 focus:outline-none">
+                <button type="submit" form="formEdit" class="py-2 px-4 rounded-full bg-red-600 text-white hover:bg-red-700 focus:outline-none">
                     Save
                 </button>
             </div>
@@ -27,17 +27,35 @@
         </div>
 
         <!-- Name -->
-        <form method="POST" action="/" class="space-y-6">
+        <form method="POST" action="{{ route('user.account.edit', ['user' => auth()->id()]) }}" class="space-y-6" id="formEdit">
+            @csrf
+            @method('PATCH')
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">
-                    Name<span class="text-red-500">*</span>
+                    First Name<span class="text-red-500">*</span>
                 </label>
                 <div class="mt-1">
                     <input
                         type="text"
-                        id="name"
-                        name="name"
-                        value="{{ $user->name }}"
+                        id="first_name"
+                        name="first_name"
+                        value="{{ $user->first_name }}"
+                        class="p-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-base"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div>
+                <label for="last_name" class="block text-sm font-medium text-gray-700">
+                    Last Name<span class="text-red-500">*</span>
+                </label>
+                <div class="mt-1">
+                    <input
+                        type="text"
+                        id="last_name"
+                        name="last_name"
+                        value="{{ $user->last_name }}"
                         class="p-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-base"
                         required
                     >
@@ -71,7 +89,7 @@
                         type="text"
                         id="address"
                         name="address"
-                        value="{{('-')}}"
+                        value="{{ $user->address }}"
                         class="p-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-base"
                         required
                     >
@@ -88,7 +106,7 @@
                         type="text"
                         id="mobile_number"
                         name="mobile_number"
-                        value="+639 {{('-')}}"
+                        value="+639 {{ $user->mobile_number }}"
                         class="p-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-base"
                         required
                     >
@@ -98,14 +116,14 @@
             <!-- Date of Birth -->
             <div>
                 <label for="date_of_birth" class="block text-sm font-medium text-gray-700">
-                    Address<span class="text-red-500">*</span>
+                    Date of Birth<span class="text-red-500">*</span>
                 </label>
                 <div class="mt-1">
                     <input
                         type="text"
                         id="date_of_birth"
                         name="date_of_birth"
-                        value="{{('-')}}"
+                        value="{{ $user->date_of_birth }}"
                         class="p-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-base"
                         required
                     >

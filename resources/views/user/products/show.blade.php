@@ -42,14 +42,14 @@
                                         <!-- Quantity Selector -->
                                         <div class="flex items-center">
                                             <button class="bg-gray-200 w-8 h-8 flex items-center justify-center rounded-full text-lg font-medium">+</button>
-                                            <span class="font-medium px-4">2</span>
+                                            <span class="font-medium px-4">1</span>
                                             <button class="bg-gray-200 w-8 h-8 flex items-center justify-center rounded-full text-lg font-medium">−</button>
                                         </div>
 
                                         <!-- Price and Add to Cart Button -->
                                         <div class="flex ml-4">
                                             <div class="bg-bibs-red text-white py-3 px-4 rounded-l-full flex items-center justify-center mr-2">
-                                                <span class="text-sm">Php 360.00</span>
+                                                <span class="text-sm">Php {{ number_format($product->price, 2) }}</span>
                                             </div>
                                             <button class="bg-bibs-red text-white py-3 px-6 rounded-r-full hover:bg-red-800 text-sm">
                                                 Add to cart
@@ -88,17 +88,22 @@
                 <div class="md:w-1/3 ml-3" style="width: 450px;">
                     <div class="bg-white p-6 rounded-xl shadow h-full">
                         <h2 class="text-xl font-bold mb-4">Recommended products</h2>
-                        <div class="flex flex-row gap-4">
+                        <div class="gap-4">
                             @foreach($recommendedProducts as $index => $item)
-                                <div class="flex items-center justify-between border border-gray-200 rounded-2xl p-3">
+                                <div class="flex items-center justify-between border border-gray-200 rounded-2xl p-3 mt-4">
                                     <div class="flex items-center gap-3">
-                                        <img src="/{{ $item->image_location }}" alt="{{ $item->name }}" class="h-20 w-20 rounded-full object-cover border-2 border-red-500">
-                                        <div>
-                                            <p class="font-bold text-lg">{{ $item->name }}</p>
-                                            <p class="text-gray-500 text-xs flex items-center gap-1 mt-1">
-                                                4.4 <span class="text-yellow-400">★</span> • 10 mins
-                                            </p>
-                                        </div>
+                                        <a href="/menu/{{ $item->id }}">
+                                            <img src="/{{ $item->image_location }}" alt="{{ $item->name }}" class="h-20 w-20 rounded-full object-cover border-2 border-red-500">
+                                        </a>
+                                        <a href="/menu/{{ $item->id }}">
+                                            <div>
+                                                <p class="font-bold text-lg">{{ $item->name }}</p>
+                                                <p class="text-gray-500 text-xs flex items-center gap-1 mt-1">
+                                                    4.4 <span class="text-yellow-400">★</span> • 10 mins
+                                                </p>
+                                            </div>
+                                        </a>
+
                                     </div>
                                     <form method="POST" action="">
                                         @csrf

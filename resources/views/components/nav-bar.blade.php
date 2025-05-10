@@ -64,11 +64,12 @@
                     @endguest
 
                     @auth
-                        <a href="/login" class="">
-                        </a>
-                        <div class="hs-dropdown [--placement:bottom-right] relative inline-flex">
-                            <button id="hs-dropdown-with-dividers" type="button" class="hs-dropdown-toggle transition-all duration-300  font-parkinsans p-3 flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('login') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                        <div class="hs-dropdown [--placement:bottom-right] relative inline-flex hs-tooltip [--placement:bottom]">
+                            <button id="hs-dropdown-with-dividers" type="button" class="hs-dropdown-toggle hs-tooltip-toggle transition-all duration-300  font-parkinsans p-3 flex items-center text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden {{ request()->is('login') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C40C0C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-round-icon lucide-circle-user-round"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>
+                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-bibs-red text-white rounded-2xl text-xs" role="tooltip">
+                                  Account Management
+                                </span>
                             </button>
 
                             <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 divide-y divide-gray-200" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-with-dividers">

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UserController;
 use App\Models\Product;
 use App\Models\Tag;
 use App\Models\User;
@@ -26,13 +27,14 @@ Route::post('/register', [RegisteredUserController::class, 'store'])->name('user
 Route::get('/feedback', fn() => view('user.feedback'));
 Route::get('/checkout', fn() => view('user.checkout'));
 
-Route::get('/{user}/account', function(User $user) {
-    return view('user.account.my_profile', compact('user'));
-})->name('user.account');
+Route::get('/{user}/account',[UserController::class, 'index'])->name('user.account');
 
 Route::get('/{user}/account/edit', function(User $user) {
     return view('user.account.profile_edit', compact('user'));
 })->name('user.account.edit');
+
+Route::patch('/{user}/account/edit', [UserController::class, 'update'])->name('user.account.edit');
+
 
 // Admin-related Routes
 Route::get('admin/login', [AdminController::class, 'create'])->name('login');
