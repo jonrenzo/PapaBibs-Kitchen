@@ -106,7 +106,8 @@
                         type="text"
                         id="mobile_number"
                         name="mobile_number"
-                        value="+639 {{ $user->mobile_number }}"
+                        value="{{ $user->mobile_number }}"
+                        placeholder="09"
                         class="p-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-base"
                         required
                     >
@@ -120,13 +121,14 @@
                 </label>
                 <div class="mt-1">
                     <input
-                        type="text"
+                        type="date"
                         id="date_of_birth"
                         name="date_of_birth"
                         value="{{ $user->date_of_birth }}"
                         class="p-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-base"
                         required
                     >
+
                 </div>
             </div>
         </form>

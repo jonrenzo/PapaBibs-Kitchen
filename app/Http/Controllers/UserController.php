@@ -12,6 +12,11 @@ class UserController extends Controller
         return view('user.account.my_profile', compact('user'));
     }
 
+    public function payment(User $user)
+    {
+        return view('user.account.payment_methods', compact('user'));
+    }
+
     public function update(User $user, Request $request)
     {
         $user->update([

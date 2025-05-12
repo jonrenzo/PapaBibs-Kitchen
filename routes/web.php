@@ -28,6 +28,7 @@ Route::get('/feedback', fn() => view('user.feedback'));
 Route::get('/checkout', fn() => view('user.checkout'));
 
 Route::get('/{user}/account',[UserController::class, 'index'])->name('user.account');
+Route::get('/{user}/account/payment',[UserController::class, 'payment'])->name('user.account.payment');
 
 Route::get('/{user}/account/edit', function(User $user) {
     return view('user.account.profile_edit', compact('user'));
