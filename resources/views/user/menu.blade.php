@@ -1,5 +1,24 @@
 <x-layout>
 
+    @if(session('success'))
+        <div
+            x-data="{ show: true }"
+            x-init="setTimeout(() => show = false, 3000)"
+            x-show="show"
+            x-transition:enter="transition ease-out duration-500"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-500"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed top-4 right-4 z-50"
+        >
+            <div class="bg-teal-100 border border-teal-200 text-sm text-teal-800 rounded-lg p-4 shadow-lg" role="alert" tabindex="-1" aria-labelledby="hs-soft-color-success-label">
+                <span id="hs-soft-color-success-label" class="font-bold">{{ session('success') }}</span>
+            </div>
+        </div>
+    @endif
+
     <div class="h-full pt-4 bg-gray-100">
         <!-- ========== HEADER ========== -->
         <header class="top-4 max-w-5xl inset-x-0 flex flex-wrap mx-auto   md:flex-nowrap z-50 w-full bg-white shadow-md rounded-full">
@@ -52,9 +71,11 @@
                                             <p class="text-sm text-black mt-2 text-left">{{ $product->description }}.</p>
                                         </div>
                                     </div>
-                                    <button class="transition-all duration-200 mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px] mx-auto">
-                                        Add to cart
-                                    </button>
+                                    <form action="{{ route('product.addToCart', $product) }}" method="GET">
+                                        <button href="{{ route('product.addToCart', $product) }}" class="transition-all duration-200 mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px] mx-auto">
+                                            Add to cart
+                                        </button>
+                                    </form>
                                 </a>
                                 <!-- End Card -->
                             @empty

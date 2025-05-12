@@ -104,8 +104,9 @@
                         </div>
                     @endauth
                     <button class="relative inline-flex justify-center items-center size-11 transition-all duration-300 font-parkinsans p-3 text-sm hover:bg-bibs-yellow hover:text-white font-medium rounded-lg focus:outline-hidden overflow-visible {{ request()->is('my-cart') ? 'hs-scrollspy-active:bg-bibs-yellow active text-white shadow-md' : 'text-bibs-red'}}" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-basket-icon lucide-shopping-basket"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg>                        <span class="absolute -top-2 -right-3 flex items-center justify-center min-w-[1.5rem] h-6 px-1.5 rounded-full text-xs font-bold bg-bibs-red text-white z-10">
-                            0
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-basket-icon lucide-shopping-basket"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg>
+                        <span id="cart-count" class="absolute -top-2 -right-3 flex items-center justify-center min-w-[1.5rem] h-6 px-1.5 rounded-full text-xs font-bold bg-bibs-red text-white z-10">
+                            {{ count(session('cart', [])) }}
                         </span>
                     </button>
                 </div>
@@ -117,55 +118,12 @@
 <!-- ========== END HEADER ========== -->
 
 <div id="hs-offcanvas-right" class="font-parkinsans hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-1/2 end-0 -translate-y-1/2 transition-all duration-300 transform h-[95%] w-[450px] z-80 bg-white border-s border-gray-200 rounded-l-xl flex flex-col" role="dialog" tabindex="-1" aria-labelledby="hs-offcanvas-right-label">
-
-    <!-- Header -->
-    <div class="flex justify-between items-center py-3 px-4 mt-8 ml-4">
-        <h3 id="hs-offcanvas-right-label" class="font-bold font-parkinsans text-black text-4xl">My Cart</h3>
-        <a class="mr-2 bg-bibs-red font-parkinsans rounded-full text-white text-sm py-2 px-4 cursor-pointer">Clear All</a>
-    </div>
-
-    <!-- Cart Items Scrollable -->
-    <div class="flex-grow overflow-y-auto p-4">
-        <!-- Cart Items here -->
-        <!-- Example Item -->
-        <div class="flex items-center justify-between p-4 border border-dashed border-gray-200 rounded-lg mb-4">
-            <div class="flex items-center">
-                <div class="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center overflow-hidden">
-                    <img src="{{ asset('/images/bibs-logo-image.png') }}" alt="Food Image" class="w-full h-full object-cover">
-                </div>
-                <div class="flex flex-col items-start ml-4">
-                    <h2 class="text-xl font-bold">Sample Item 1</h2>
-                    <p class="text-red-600 font-medium mt-2">PHP 360.00</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <button class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-                    <span class="text-xl">+</span>
-                </button>
-                <span class="mx-4 text-xl">2</span>
-                <button class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-                    <span class="text-xl">-</span>
-                </button>
-            </div>
-        </div>
-        <!-- End Example Item -->
-
-        <!-- Total -->
-        <div class="mt-8 pt-4 border-t border-gray-200">
-            <hr class="border-gray-400">
-            <div class="flex justify-between items-center m-4">
-                <h3 class="text-xl font-bold">Total</h3>
-                <p class="text-xl font-bold">PHP 720.00</p>
-            </div>
-            <hr class="border-gray-400">
-        </div>
-    </div>
-
-    <div class="p-4 border-t border-gray-200 bg-gray-100 inline-flex justify-center">
-        <a class="w-[400px] py-3 bg-bibs-red text-white font-parkinsans rounded-full text-sm text-center"  href="/checkout" >
-            Proceed to Checkout
-        </a>
-    </div>
+    @include('cart')
 </div>
+
+<script>
+    var updateCart = "{{ route('cart.update') }}";
+    var token = "{{ csrf_token() }}";
+</script>
 
 

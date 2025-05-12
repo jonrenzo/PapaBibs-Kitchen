@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisteredUserController;
@@ -19,20 +20,24 @@ Route::get('/menu', function () {
 });
 
 Route::get('/menu/{product}', [ProductController::class, 'show']);
-Route::get('/login', [SessionController::class, 'create'])->name('user.login');
+Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store'])->name('user.login');
 Route::post('/logout', [SessionController::class, 'destroy']);
-Route::get('/register', [RegisteredUserController::class, 'create'])->name('user.register');
+Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('user.register');
 Route::get('/feedback', fn() => view('user.feedback'));
 Route::get('/checkout', fn() => view('user.checkout'));
+
+Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.addToCart');
+
+Route::post('/cart-update', [CartController::class, 'cartUpdate'])->name('cart.update');
 
 Route::get('/{user}/account',[UserController::class, 'index'])->name('user.account');
 Route::get('/{user}/account/payment',[UserController::class, 'payment'])->name('user.account.payment');
 
 Route::get('/{user}/account/edit', function(User $user) {
     return view('user.account.profile_edit', compact('user'));
-})->name('user.account.edit');
+});
 
 Route::patch('/{user}/account/edit', [UserController::class, 'update'])->name('user.account.edit');
 
