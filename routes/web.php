@@ -5,6 +5,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\Socialite\ProviderCallbackController;
+use App\Http\Controllers\Socialite\ProviderRedirectController;
 use App\Http\Controllers\UserController;
 use App\Models\Product;
 use App\Models\Tag;
@@ -29,6 +31,9 @@ Route::get('/feedback', fn() => view('user.feedback'));
 Route::get('/checkout', fn() => view('user.checkout'));
 
 Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.addToCart');
+
+Route::get('/auth/{provider}/redirect', ProviderRedirectController::class)->name('auth.redirect');
+Route::get('/auth/{provider}/callback', ProviderCallbackController::class)->name('auth.callback');
 
 Route::post('/cart-update', [CartController::class, 'cartUpdate'])->name('cart.update');
 

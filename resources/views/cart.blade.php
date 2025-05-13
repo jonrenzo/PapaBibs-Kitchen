@@ -40,8 +40,12 @@
     @endif
     <!-- End Example Item -->
 
+
+</div>
+
+<div class="p-4 border-t border-gray-200 bg-gray-100 inline-flex justify-center flex-col">
     <!-- Total -->
-    <div class="mt-8 pt-4 border-t border-gray-200">
+    <div class="mt-2 pt-2 border-t border-gray-200 mb-5">
         <hr class="border-gray-400">
         <div class="flex justify-between items-center m-4">
             <h3 class="text-xl font-bold">Total</h3>
@@ -53,9 +57,6 @@
         </div>
         <hr class="border-gray-400">
     </div>
-</div>
-
-<div class="p-4 border-t border-gray-200 bg-gray-100 inline-flex justify-center">
     <a class="w-[400px] py-3 bg-bibs-red text-white font-parkinsans rounded-full text-sm text-center"  href="/checkout" >
         Proceed to Checkout
     </a>
