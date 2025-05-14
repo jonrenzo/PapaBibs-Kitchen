@@ -19,26 +19,29 @@ class ProviderCallbackController extends Controller
             return redirect(route('user.login'))->withErrors(['provider' => 'Invalid provider']);
         }
 
-        $socialUser = Socialite::driver($provider)->user();
+        try {
+            $socialUser = Socialite::driver($provider)->stateless()->user();
 
-        $fullName = explode(' ', $socialUser->name, 2);
-        $firstName = $fullName[0];
-        $lastName = $fullName[1] ?? '';
+            $fullName = explode(' ', $socialUser->name, 2);
+            $firstName = $fullName[0];
+            $lastName = $fullName[1] ?? '';
 
-        $user = User::updateOrCreate([
-            'provider_id' => $socialUser->id,
-            'provider_name' => $provider,
-        ], [
-            'first_name' => $firstName,
-            'last_name' => $lastName,
-            'email' => $socialUser->email,
-            'provider_token' => $socialUser->token,
-            'provider_refresh_token' => $socialUser->refreshprovider
-        ]);
+            $user = User::updateOrCreate([
+                'provider_id' => $socialUser->id,
+                'provider_name' => $provider,
+            ], [
+                'first_name' => $firstName,
+                'last_name' => $lastName,
+                'email' => $socialUser->email,
+                'provider_token' => $socialUser->token,
+                'provider_refresh_token' => $socialUser->refreshToken
+            ]);
 
+            Auth::login($user);
 
-        Auth::login($user);
-
-        return redirect()->route('user.account.edit', ['user' => $user->id]);
+            return redirect()->route('user.account.edit', ['user' => $user->id]);
+        } catch (\Exception $e) {
+            return redirect(route('user.login'))->withErrors(['provider' => 'Authentication failed: ' . $e->getMessage()]);
+        }
     }
 }

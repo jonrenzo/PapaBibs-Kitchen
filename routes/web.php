@@ -32,8 +32,10 @@ Route::get('/checkout', fn() => view('user.checkout'));
 
 Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.addToCart');
 
-Route::get('/auth/{provider}/redirect', ProviderRedirectController::class)->name('auth.redirect');
-Route::get('/auth/{provider}/callback', ProviderCallbackController::class)->name('auth.callback');
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/auth/{provider}/redirect', ProviderRedirectController::class)->name('auth.redirect');
+    Route::get('/auth/{provider}/callback', ProviderCallbackController::class)->name('auth.callback');
+});
 
 Route::post('/cart-update', [CartController::class, 'cartUpdate'])->name('cart.update');
 
