@@ -13,8 +13,7 @@ class CartController extends Controller
 
         if (isset($cart[$product->id])) {
             $cart[$product->id]['quantity']++;
-        }
-        else{
+        } else {
             $cart[$product->id] = [
                 'name' => $product->name,
                 'price' => $product->price,
@@ -24,6 +23,16 @@ class CartController extends Controller
         }
 
         session()->put('cart', $cart);
+
+        // AJAX request
+        if ($request->ajax()) {
+            return response()->json([
+                'message' => 'Product added to cart successfully!',
+                'cart_count' => collect($cart)->sum('quantity'),
+                'cart_html' => view('cart')->render(),
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 

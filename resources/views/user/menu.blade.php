@@ -1,24 +1,4 @@
 <x-layout>
-
-    @if(session('success'))
-        <div
-            x-data="{ show: true }"
-            x-init="setTimeout(() => show = false, 3000)"
-            x-show="show"
-            x-transition:enter="transition ease-out duration-500"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="transition ease-in duration-500"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-            class="fixed top-4 right-4 z-50"
-        >
-            <div class="bg-teal-100 border border-teal-200 text-sm text-teal-800 rounded-lg p-4 shadow-lg" role="alert" tabindex="-1" aria-labelledby="hs-soft-color-success-label">
-                <span id="hs-soft-color-success-label" class="font-bold">{{ session('success') }}</span>
-            </div>
-        </div>
-    @endif
-
     <div class="h-full pt-4 bg-gray-100">
         <!-- ========== HEADER ========== -->
         <header class="top-4 max-w-5xl inset-x-0 flex flex-wrap mx-auto   md:flex-nowrap z-50 w-full bg-white shadow-md rounded-full">
@@ -47,8 +27,6 @@
         </header>
         <!-- ========== END HEADER ========== -->
 
-
-
         <div class="bg-white h-[1099px] w-[1146px] rounded-4xl mx-auto mt-5 mb-5">
 
             <div class="mt-3">
@@ -71,11 +49,13 @@
                                             <p class="text-sm text-black mt-2 text-left">{{ $product->description }}.</p>
                                         </div>
                                     </div>
-                                    <form action="{{ route('product.addToCart', $product) }}" method="GET">
-                                        <button href="{{ route('product.addToCart', $product) }}" class="transition-all duration-200 mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px] mx-auto">
-                                            Add to cart
-                                        </button>
-                                    </form>
+                                    <button
+                                        class="add-to-cart-btn transition-all duration-200 mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px] mx-auto"
+                                        data-product-id="{{ $product->id }}"
+                                    >
+                                        Add to cart
+                                    </button>
+
                                 </a>
                                 <!-- End Card -->
                             @empty
@@ -84,29 +64,7 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
-
-
-{{--            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white rounded-2xl">--}}
-{{--                @foreach($products as $product)--}}
-{{--                    <!-- Card -->--}}
-{{--                    <a href="/menu/{{ $product->id }}" class="bg-white border-2 border-dashed border-bibs-red rounded-lg shadow-lg p-4 pl-2 flex flex-col justify-between text-center h-[466px] w-[320px] m-7">--}}
-{{--                        <div class="flex flex-col items-center">--}}
-{{--                            <img src="/{{ $product->image_location }}" alt="{{ $product->name }}" class="h-44 object-cover rounded-full mb-2">--}}
-{{--                            <div class="pl-4 mb-8">--}}
-{{--                                <h1 class="text-xl font-extrabold text-black text-left">{{ $product->name }}</h1>--}}
-{{--                                <p class="text-bibs-red font-normal mt-1 text-left">PHP {{ number_format($product->price, 2) }}</p>--}}
-{{--                                <p class="text-sm text-black mt-2 text-left">{{ $product->description }}.</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <button class="transition-all duration-200 mt-4 bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 rounded-full w-[256px] mx-auto">--}}
-{{--                            Add to cart--}}
-{{--                        </button>--}}
-{{--                    </a>--}}
-{{--                    <!-- End Card -->--}}
-{{--                @endforeach--}}
-{{--            </div>--}}
         </div>
     </div>
 </x-layout>

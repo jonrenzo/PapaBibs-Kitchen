@@ -32,6 +32,7 @@ Route::get('/checkout', fn() => view('user.checkout'));
 
 Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.addToCart');
 
+
 Route::group(['middleware' => ['web']], function () {
     Route::get('/auth/{provider}/redirect', ProviderRedirectController::class)->name('auth.redirect');
     Route::get('/auth/{provider}/callback', ProviderCallbackController::class)->name('auth.callback');
@@ -56,3 +57,4 @@ Route::post('admin/logout', [AdminController::class, 'destroy'])->name('admin.lo
 Route::get('/admin',[AdminController::class, 'index'])->middleware('auth:admin');
 Route::get('/admin/users', [AdminController::class, 'users']);
 Route::resource('admin/products', ProductController::class);
+
