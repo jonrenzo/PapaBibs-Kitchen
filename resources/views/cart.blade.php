@@ -1,7 +1,7 @@
 <!-- Header -->
 <div class="flex justify-between items-center py-3 px-4 mt-8 ml-4">
     <h3 id="hs-offcanvas-right-label" class="font-bold font-parkinsans text-black text-4xl">My Cart</h3>
-    <a class="mr-2 bg-bibs-red font-parkinsans rounded-full text-white text-sm py-2 px-4 cursor-pointer">Clear All</a>
+    <button class="mr-2 bg-bibs-red font-parkinsans rounded-full text-white text-sm py-2 px-4 cursor-pointer" id="clear-cart">Clear All</button>
 </div>
 
 <!-- Cart Items Scrollable -->
@@ -69,3 +69,4 @@
         Proceed to Checkout
     </a>
 </div>
+

@@ -40,14 +40,9 @@
                         Menu
                     </a>
 
-                    <div class="relative">
-                        <input type="text" class="font-parkinsans text-bibs-red bg-white font-medium py-2 px-6 rounded-full shadow-sm w-32" placeholder="Search">
-                        <div class="absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-3 text-gray-400">
-                            <svg class="shrink-0 size-3 text-gray-400 dark:text-white/60" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg>
-                            <span class="mx-1">
-                                <svg class="shrink-0 size-3 text-gray-400 dark:text-white/60" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                            </span>
-                        </div>
+                    <div class="relative" id="navbar-search-wrapper">
+                        <input type="text" id="navbar-search" autocomplete="off" class="font-parkinsans text-bibs-red bg-white font-medium py-2 px-6 rounded-full shadow-sm w-48" placeholder="Search">
+                        <div class="absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-3 text-gray-400"></div>
                     </div>
 
                     <a>
@@ -117,13 +112,98 @@
 </header>
 <!-- ========== END HEADER ========== -->
 
+
+<div id="navbar-search-dropdown" class="fixed left-0 top-0 h-14 bg-white border border-gray-200 rounded-lg shadow-lg z-[9999] hidden"></div>
+
 <div id="hs-offcanvas-right" class="font-parkinsans hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-1/2 end-0 -translate-y-1/2 transition-all duration-300 transform h-[95%] w-[450px] z-80 bg-white border-s border-gray-200 rounded-l-xl flex flex-col" role="dialog" tabindex="-1" aria-labelledby="hs-offcanvas-right-label">
     @include('cart')
 </div>
 
 <script>
+    var clearCart = "{{ route('cart.clear') }}";
     var updateCart = "{{ route('cart.update') }}";
     var token = "{{ csrf_token() }}";
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('navbar-search');
+    const dropdown = document.getElementById('navbar-search-dropdown');
+    const searchWrapper = document.getElementById('navbar-search-wrapper');
+
+    let debounceTimeout = null;
+
+    function positionDropdown() {
+        const rect = searchInput.getBoundingClientRect();
+        dropdown.style.width = rect.width + 'px';
+        dropdown.style.left = rect.left + window.scrollX + 'px';
+        dropdown.style.top = rect.bottom + window.scrollY + 'px';
+    }
+
+    searchInput.addEventListener('input', function () {
+        const query = this.value.trim();
+        clearTimeout(debounceTimeout);
+
+        if (query.length === 0) {
+            dropdown.innerHTML = '';
+            dropdown.classList.add('hidden');
+            return;
+        }
+
+        debounceTimeout = setTimeout(() => {
+            fetch(`/search-products?q=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        dropdown.innerHTML = '<div class="px-4 py-2 text-gray-500">No products found</div>';
+                        dropdown.classList.remove('hidden');
+                        positionDropdown();
+                        return;
+                    }
+                    dropdown.innerHTML = data.map(product => {
+                        console.log('Product:', product);
+                        return `<div class="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-bibs-yellow hover:text-white rounded h-full" data-id="${product.id}">
+                            <img src="${product.image_location}" alt="${product.name}" class="w-10 h-10 object-cover rounded"/>
+                            <div class="flex flex-col">
+                                <span class="font-semibold">${product.name}</span>
+                                <span class="text-xs text-gray-500">${product.price ? '₱' + product.price : ''}</span>
+                            </div>
+                        </div>`;
+                    }).join('');
+                    dropdown.classList.remove('hidden');
+                    positionDropdown();
+                });
+        }, 200);
+    });
+
+    dropdown.addEventListener('mousedown', function (e) {
+        // Traverse up to the parent div with data-id if clicking on child elements
+        let target = e.target;
+        while (target && !target.dataset.id && target !== dropdown) {
+            target = target.parentElement;
+        }
+        if (target && target.dataset.id) {
+            window.location.href = `/menu/${target.dataset.id}`;
+        }
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!dropdown.contains(e.target) && e.target !== searchInput) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    // Reposition dropdown on window resize/scroll
+    window.addEventListener('resize', function () {
+        if (!dropdown.classList.contains('hidden')) {
+            positionDropdown();
+        }
+    });
+    window.addEventListener('scroll', function () {
+        if (!dropdown.classList.contains('hidden')) {
+            positionDropdown();
+        }
+    });
+});
 </script>
 
 

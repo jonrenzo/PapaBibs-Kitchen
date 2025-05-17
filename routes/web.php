@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 // User Routes
 Route::get('/', fn() => view('user.index', ['products' => Product::all()]));
@@ -21,7 +22,7 @@ Route::get('/menu', function () {
     return view('user.menu', ['tags' => $tags]);
 });
 
-Route::get('/menu/{product}', [ProductController::class, 'show']);
+Route::get('/menu/{product}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store'])->name('user.login');
 Route::post('/logout', [SessionController::class, 'destroy']);
@@ -32,6 +33,8 @@ Route::get('/checkout', fn() => view('user.checkout'));
 
 Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.addToCart');
 
+//clear cart route
+Route::post('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/auth/{provider}/redirect', ProviderRedirectController::class)->name('auth.redirect');
@@ -49,6 +52,7 @@ Route::get('/{user}/account/edit', function(User $user) {
 
 Route::patch('/{user}/account/edit', [UserController::class, 'update'])->name('user.account.edit');
 
+Route::get('/search-products', [ProductController::class, 'search'])->name('search.products');
 
 // Admin-related Routes
 Route::get('admin/login', [AdminController::class, 'create'])->name('login');

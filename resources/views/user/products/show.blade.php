@@ -51,7 +51,10 @@
                                             <div class="bg-bibs-red text-white py-3 px-4 rounded-l-full flex items-center justify-center mr-2">
                                                 <span class="text-sm">Php {{ number_format($product->price, 2) }}</span>
                                             </div>
-                                            <button class="bg-bibs-red text-white py-3 px-6 rounded-r-full hover:bg-red-800 text-sm">
+                                            <button
+                                                class="add-to-cart-btn bg-bibs-red text-white py-3 px-6 rounded-r-full hover:bg-red-800 text-sm"
+                                                data-product-id="{{ $product->id }}"
+                                            >
                                                 Add to cart
                                             </button>
                                         </div>

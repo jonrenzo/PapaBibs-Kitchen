@@ -81,6 +81,24 @@ $(document).ready(function () {
         });
     });
 
+    // clear all cart items
+    $(document).on('click', '#clear-cart', function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: clearCart,
+            method: "POST",
+            data: {
+                _token: token
+            },
+            success: function (response) {
+                $('#cart-count').text(response.cart_count);
+                $("#hs-offcanvas-right").html(response.success)
+            }
+        });
+    });
+
 
 
 });
+

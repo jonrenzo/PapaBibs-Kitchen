@@ -7,6 +7,19 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+    public function clearCart(Request $request)
+    {
+        session()->forget('cart');
+        if ($request->ajax()) {
+            return response()->json([
+                'cart_count' => 0,
+                'success' => view('cart')->render(),
+            ]);
+        }
+        return redirect()->back()->with('success', 'Cart cleared successfully!');
+    }
+
     public function addToCart(Request $request, Product $product)
     {
         $cart = session('cart', []);
@@ -59,3 +72,4 @@ class CartController extends Controller
 
 
 }
+

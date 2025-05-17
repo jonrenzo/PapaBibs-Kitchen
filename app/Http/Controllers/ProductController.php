@@ -57,6 +57,23 @@ class ProductController extends Controller
         return redirect('/admin/products');
     }
 
+    public function search(Request $request)
+    {
+        $q = $request->query('q');
+
+        $products = Product::where('name', 'like', "%{$q}%")
+            ->limit(8)
+            ->get(['id', 'name', 'price', 'image_location'])
+            ->map(function ($product) {
+                $product->image_location = $product->image_location
+                    ? '/' . ltrim($product->image_location, '/')
+                    : 'images/bibs-logo-image.png';
+                return $product;
+            });
+
+        return response()->json($products);
+    }
+
 
     public function show(Product $product){
         $recommendedProducts = Product::where('id', '!=', $product->id)->take(5)->get();
