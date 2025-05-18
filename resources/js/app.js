@@ -1,7 +1,7 @@
 import './bootstrap';
 import 'preline';
-import $ from 'jquery'
-window.$ = $;
+import $ from 'jquery';
+//window.$ = $;
 
 $(document).ready(function () {
     $(document).on('click', '#increase-quantity', function (e) {

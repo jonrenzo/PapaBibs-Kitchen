@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <img src="${product.image_location}" alt="${product.name}" class="w-10 h-10 object-cover rounded"/>
                             <div class="flex flex-col">
                                 <span class="font-semibold">${product.name}</span>
-                                <span class="text-xs text-gray-500">${product.price ? '₱' + product.price : ''}</span>
+                                <span class="text-bibs-red font-normal mt-1 text-left">${product.price ? 'PHP ' + product.price : ''}.00</span>
                             </div>
                         </div>`;
                     }).join('');

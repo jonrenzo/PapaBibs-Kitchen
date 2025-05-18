@@ -61,7 +61,7 @@
         $cartIsEmpty = empty(session('cart')) || count(session('cart')) === 0;
     @endphp
     <a
-        href="{{ $cartIsEmpty ? '#' : '/checkout' }}"
+        href="{{ route('checkout') }}"
         class="w-[400px] py-3 font-parkinsans rounded-full text-sm text-center
         {{ $cartIsEmpty ? 'bg-gray-400 cursor-not-allowed text-white' : 'bg-bibs-red text-white hover:bg-bibs-yellow hover:text-black' }}"
         {{ $cartIsEmpty ? 'aria-disabled=true disabled' : '' }}

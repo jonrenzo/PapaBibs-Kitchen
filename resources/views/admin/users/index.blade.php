@@ -39,13 +39,15 @@
                         <table class="min-w-full divide-y divide-gray-200" id="users-table">
                             <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">                                    <div class="flex">
+                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
+                                    <div class="flex">
                                         ID
                                         <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
                                         </svg>
                                     </div></th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">                                    <div class="flex">
+                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
+                                    <div class="flex">
                                         Name
                                         <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
@@ -66,7 +68,7 @@
                             @foreach($users as $user)
                             <tr class="bg-white hover:bg-gray-50">
                                 <td class="px-6 py-4 text-sm text-gray-600">{{ $user->id }}</td>
-                                <td class="px-6 py-4 text-sm text-gray-600">{{ $user->name }}</td>
+                                <td class="px-6 py-4 text-sm text-gray-600">{{ $user->first_name . " " . $user->last_name }}</td>
                                 <td class="px-6 py-4 text-sm text-gray-600">{{ $user->email }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center space-x-3">
