@@ -22,16 +22,12 @@ class ProviderCallbackController extends Controller
         try {
             $socialUser = Socialite::driver($provider)->stateless()->user();
 
-            $fullName = explode(' ', $socialUser->name, 2);
-            $firstName = $fullName[0];
-            $lastName = $fullName[1] ?? '';
-
-            $user = User::updateOrCreate([
+            $user = User::firstOrCreate([
                 'provider_id' => $socialUser->id,
                 'provider_name' => $provider,
             ], [
-                'first_name' => $firstName,
-                'last_name' => $lastName,
+                'first_name' => $socialUser->given_name,
+                'last_name' => $socialUser->family_name,
                 'email' => $socialUser->email,
                 'provider_token' => $socialUser->token,
                 'provider_refresh_token' => $socialUser->refreshToken

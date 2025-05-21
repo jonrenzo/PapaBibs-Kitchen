@@ -144,11 +144,12 @@
                         Back to menu
                     </button>
 
-                    <button
+                    <a
+                        href="{{ route('checkout.rate') }}"
                         type="button"
                         class="py-2 px-6 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full bg-red-600 text-white hover:bg-red-700 transition-colors">
                         Rate us!
-                    </button>
+                    </a>
                 </div>
 
             </div>

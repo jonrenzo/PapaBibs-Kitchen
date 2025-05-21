@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,12 @@ class UserController extends Controller
     public function payment(User $user)
     {
         return view('user.account.payment_methods', compact('user'));
+    }
+
+    public function orders(User $user)
+    {
+        $orders = Order::where('user_id', $user->id)->get();
+        return view('user.account.my_orders', compact('user', 'orders'));
     }
 
     public function update(User $user, Request $request)
@@ -31,3 +38,4 @@ class UserController extends Controller
         return redirect()->route('user.account', ['user' => $user->id]);
     }
 }
+

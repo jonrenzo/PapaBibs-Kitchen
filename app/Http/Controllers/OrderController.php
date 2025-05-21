@@ -55,6 +55,7 @@ class OrderController extends Controller
             'total' => collect($cart)->sum(function ($item) {
                 return $item['price'] * $item['quantity'];
             }),
+            'status_id' => 1,
         ]);
 
         foreach ($cart as $cartItem) {

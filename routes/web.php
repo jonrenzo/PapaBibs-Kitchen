@@ -31,6 +31,8 @@ Route::get('/orders/success/{order}', function ($orderId) {
     return view('user.checkout.success', compact('order'));
 })->name('orders.success');
 
+Route::view('/rate', 'user.checkout.rate')->name('checkout.rate');
+
 Route::get('/menu/{product}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store'])->name('user.login');
@@ -57,6 +59,8 @@ Route::get('/{user}/account/payment',[UserController::class, 'payment'])->name('
 Route::get('/{user}/account/edit', function(User $user) {
     return view('user.account.profile_edit', compact('user'));
 });
+
+Route::get('/{user}/account/orders', [UserController::class, 'orders'])->name('user.account.orders');
 
 Route::patch('/{user}/account/edit', [UserController::class, 'update'])->name('user.account.edit');
 Route::get('/search-products', [ProductController::class, 'search'])->name('search.products');

@@ -45,14 +45,24 @@
                                         <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
                                         </svg>
-                                    </div></th>
+                                    </div>
+                                </th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
                                     <div class="flex">
                                         User ID
                                         <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
                                         </svg>
-                                    </div></th>
+                                    </div>
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
+                                    <div class="flex">
+                                        Items
+                                        <svg class="w-4 h-4 text-gray-800 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20V7m0 13-4-4m4 4 4-4m4-12v13m0-13 4 4m-4-4-4 4"/>
+                                        </svg>
+                                    </div>
+                                </th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-800">
                                     <div class="flex">
                                         Courier
@@ -93,6 +103,15 @@
                                 <tr class="bg-white hover:bg-gray-50">
                                     <td class="px-6 py-4 text-sm text-gray-600"> {{ $order->id }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-600"> {{ $order->user_id }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">
+                                        @if(is_array(json_decode($order->items)))
+                                            @foreach(json_decode($order->items) as $item)
+                                                {{ $item->item_name }}<br>
+                                            @endforeach
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
                                     <td class="px-6 py-4 text-sm text-gray-600"> {{ $order->courier }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-600"> {{ $order->payment_method }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-600"> {{ $order->status->label }}</td>
@@ -124,10 +143,33 @@
                         </table>
                         <!-- End Table -->
 
+                        <!-- DataTables info will be shown below the table -->
+                        <div class="flex flex-wrap justify-between items-center gap-2 mt-4">
+
+                        </div>
+
                         <!-- Footer -->
                         <div class="px-6 py-4 border-t border-gray-200 text-sm text-gray-500 text-right flex">
-                            <div class="my-auto">
-                                Total of <span class="font-bold text-bibs-red"> {{ count($orders) }} </span> Orders
+                            <div class="whitespace-nowrap text-sm text-gray-500 px-5 my-auto" data-hs-datatable-info="">
+                                Showing
+                                <span data-hs-datatable-info-from=""></span>
+                                to
+                                <span data-hs-datatable-info-to=""></span>
+                                of
+                                <span data-hs-datatable-info-length=""></span>
+                                orders
+                            </div>
+
+                            <div class="inline-flex items-center gap-1 hidden pl-64" data-hs-datatable-paging="">
+                                <button type="button" class="p-2.5 min-w-10 inline-flex justify-center items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none" data-hs-datatable-paging-prev="">
+                                    <span aria-hidden="true">«</span>
+                                    <span class="sr-only">Previous</span>
+                                </button>
+                                <div class="flex items-center space-x-1 [&>.active]:bg-gray-100" data-hs-datatable-paging-pages=""></div>
+                                <button type="button" class="p-2.5 min-w-10 inline-flex justify-center items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none" data-hs-datatable-paging-next="">
+                                    <span class="sr-only">Next</span>
+                                    <span aria-hidden="true">»</span>
+                                </button>
                             </div>
 
                             <div class="flex-1 flex items-center justify-end space-x-2">
@@ -236,11 +278,6 @@
 <!-- DataTables -->
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <!-- DataTables Core -->
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
@@ -260,41 +297,46 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var table = $('#orders-table').DataTable({
+            order: [[0, 'desc']],
             dom: 't',
+            pageLength: 5,
+            lengthChange: false,
+            paging: true,
+            info: true,
             buttons: [
                 {
                     extend: 'copy',
                     className: 'hidden',
                     exportOptions: {
-                        columns: ':not(:nth-child(7))'
+                        columns: ':not(:nth-child(8))'
                     }
                 },
                 {
                     extend: 'print',
                     className: 'hidden',
                     exportOptions: {
-                        columns: ':not(:nth-child(7))'
+                        columns: ':not(:nth-child(8))'
                     }
                 },
                 {
                     extend: 'excel',
                     className: 'hidden',
                     exportOptions: {
-                        columns: ':not(:nth-child(7))'
+                        columns: ':not(:nth-child(8))'
                     }
                 },
                 {
                     extend: 'csv',
                     className: 'hidden',
                     exportOptions: {
-                        columns: ':not(:nth-child(7))'
+                        columns: ':not(:nth-child(8))'
                     }
                 },
                 {
                     extend: 'pdf',
                     className: 'hidden',
                     exportOptions: {
-                        columns: ':not(:nth-child(7))'
+                        columns: ':not(:nth-child(8))'
                     }
                 }
             ],
@@ -303,6 +345,50 @@
                 $('.dt-buttons').hide();
             }
         });
+
+        function updateCustomPagination(table) {
+            const info = table.page.info();
+
+            // Update pagination info text
+            document.querySelector('[data-hs-datatable-info-from]').textContent = info.start + 1;
+            document.querySelector('[data-hs-datatable-info-to]').textContent = info.end;
+            document.querySelector('[data-hs-datatable-info-length]').textContent = info.recordsDisplay;
+
+            // Update page numbers
+            const pagesContainer = document.querySelector('[data-hs-datatable-paging-pages]');
+            pagesContainer.innerHTML = ''; // Clear previous
+
+            for (let i = 0; i < info.pages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i + 1;
+                button.className = `p-2.5 min-w-10 text-sm rounded-full ${i === info.page ? 'bg-gray-100 font-medium' : 'hover:bg-gray-50'} text-gray-800`;
+                button.addEventListener('click', () => {
+                    table.page(i).draw('page');
+                });
+                pagesContainer.appendChild(button);
+            }
+
+            // Prev/Next button states
+            document.querySelector('[data-hs-datatable-paging-prev]').disabled = info.page === 0;
+            document.querySelector('[data-hs-datatable-paging-next]').disabled = info.page === info.pages - 1;
+        }
+
+        // After table initialization
+        updateCustomPagination(table);
+
+        // Bind to redraw events
+        table.on('draw', function () {
+            updateCustomPagination(table);
+        });
+
+        // Hook up Prev/Next buttons
+        document.querySelector('[data-hs-datatable-paging-prev]').addEventListener('click', () => {
+            table.page('previous').draw('page');
+        });
+        document.querySelector('[data-hs-datatable-paging-next]').addEventListener('click', () => {
+            table.page('next').draw('page');
+        });
+
 
         // Connect custom UI buttons to DataTables buttons
         const buttons = document.querySelectorAll('#hs-dropdown-datatable-with-export .hs-dropdown-menu button');

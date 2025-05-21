@@ -9,8 +9,12 @@ class CheckoutController extends Controller
 {
     public function index(User $user)
     {
-        // pass the auth user to the view
-        $user = auth()->user();
+        if (!auth()->check()) {
+            return redirect()->route('user.login');
+        } else {
+            $user = auth()->user();
+        }
+
         return view('user.checkout.index', compact('user'));
     }
 }

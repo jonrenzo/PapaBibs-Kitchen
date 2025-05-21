@@ -117,15 +117,6 @@ bg-white border-e border-gray-200" role="dialog" tabindex="-1" aria-label="Sideb
                             Orders
                         </a>
                     </li>
-                    <!-- Transaction History -->
-                    <li class="hs-accordion" id="account-accordion">
-                        <a href="/transactions" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 {{ request()->is('transactions') ? 'bg-gray-200' : '' }} text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden ">
-                            <svg class="size-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 8h6m-6 4h6m-6 4h6M6 3v18l2-2 2 2 2-2 2 2 2-2 2 2V3l-2 2-2-2-2 2-2-2-2 2-2-2Z"/>
-                            </svg>
-                            Transactions
-                        </a>
-                    </li>
                     <!-- Feedbacks -->
                     <li class="hs-accordion" id="account-accordion">
                         <a href="/feedbacks" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 {{ request()->is('feedbacks') ? 'bg-gray-200' : '' }} text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden ">
@@ -136,18 +127,6 @@ bg-white border-e border-gray-200" role="dialog" tabindex="-1" aria-label="Sideb
                             Feedbacks
                         </a>
                     </li>
-                    <!-- Events -->
-                    <li class="hs-accordion" id="account-accordion">
-                        <a href="/events" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 {{ request()->is('events') ? 'bg-gray-200' : '' }} text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden ">
-                            <svg class="size-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
-                            </svg>
-
-
-                            Events
-                        </a>
-                    </li>
-
                     <!-- Go to Site -->
                     <li>
                         <a href="/" class=" w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden ">

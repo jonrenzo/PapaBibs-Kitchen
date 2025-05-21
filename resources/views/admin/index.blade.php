@@ -52,7 +52,7 @@
 
                 <div class="text-center">
                     <h3 class="text-7xl font-semibold text-green-700 confetti-run">
-                        0
+                        P{{ number_format($orders->sum('total', 2)) }}
                     </h3>
                 </div>
             </div>

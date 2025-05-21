@@ -163,8 +163,26 @@
 
                         <!-- Footer -->
                         <div class="px-6 py-4 border-t border-gray-200 text-sm text-gray-500 text-right flex">
-                            <div class="my-auto">
-                                Total of <span class="font-bold text-bibs-red"> {{ count($products) }} </span> Products
+                            <div class="whitespace-nowrap text-sm text-gray-500 px-5 my-auto" data-hs-datatable-info="">
+                                Showing
+                                <span data-hs-datatable-info-from=""></span>
+                                to
+                                <span data-hs-datatable-info-to=""></span>
+                                of
+                                <span data-hs-datatable-info-length=""></span>
+                                products
+                            </div>
+
+                            <div class="inline-flex items-center gap-1 hidden pl-64" data-hs-datatable-paging="">
+                                <button type="button" class="p-2.5 min-w-10 inline-flex justify-center items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none" data-hs-datatable-paging-prev="">
+                                    <span aria-hidden="true">«</span>
+                                    <span class="sr-only">Previous</span>
+                                </button>
+                                <div class="flex items-center space-x-1 [&>.active]:bg-gray-100" data-hs-datatable-paging-pages=""></div>
+                                <button type="button" class="p-2.5 min-w-10 inline-flex justify-center items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none" data-hs-datatable-paging-next="">
+                                    <span class="sr-only">Next</span>
+                                    <span aria-hidden="true">»</span>
+                                </button>
                             </div>
 
                             <div class="flex-1 flex items-center justify-end space-x-2">
@@ -289,6 +307,10 @@
     document.addEventListener('DOMContentLoaded', function() {
         var table = $('#products-table').DataTable({
             dom: 't',
+            pageLength: 5,
+            lengthChange: false,
+            paging: true,
+            info: true,
             buttons: [
                 {
                     extend: 'copy',
@@ -302,6 +324,14 @@
                     className: 'hidden',
                     exportOptions: {
                         columns: ':not(:nth-child(7))'
+                    },
+                    customize: function (win) {
+                        $(win.document.body)
+                            .prepend(
+                                '<div style="text-align:center; margin-bottom:20px;">' +
+                                '<img src="/images/Logo-Txt.png" style="height:60px;" />' +
+                                '</div>'
+                            );
                     }
                 },
                 {
@@ -323,6 +353,15 @@
                     className: 'hidden',
                     exportOptions: {
                         columns: ':not(:nth-child(7))'
+                    },
+                    customize: function (doc) {
+                        // Add logo at the top of the PDF
+                        doc.content.unshift({
+                            image: 'data:image/png;base64,{{ base64_encode(file_get_contents(public_path("./images/Logo-Txt.png"))) }}',
+                            width: 120,
+                            alignment: 'center',
+                            margin: [0, 0, 0, 20]
+                        });
                     }
                 }
             ],
@@ -331,6 +370,52 @@
                 $('.dt-buttons').hide();
             }
         });
+
+
+        function updateCustomPagination(table) {
+            const info = table.page.info();
+
+            // Update pagination info text
+            document.querySelector('[data-hs-datatable-info-from]').textContent = info.start + 1;
+            document.querySelector('[data-hs-datatable-info-to]').textContent = info.end;
+            document.querySelector('[data-hs-datatable-info-length]').textContent = info.recordsDisplay;
+
+            // Update page numbers
+            const pagesContainer = document.querySelector('[data-hs-datatable-paging-pages]');
+            pagesContainer.innerHTML = ''; // Clear previous
+
+            for (let i = 0; i < info.pages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i + 1;
+                button.className = `p-2.5 min-w-10 text-sm rounded-full ${i === info.page ? 'bg-gray-100 font-medium' : 'hover:bg-gray-50'} text-gray-800`;
+                button.addEventListener('click', () => {
+                    table.page(i).draw('page');
+                });
+                pagesContainer.appendChild(button);
+            }
+
+            // Prev/Next button states
+            document.querySelector('[data-hs-datatable-paging-prev]').disabled = info.page === 0;
+            document.querySelector('[data-hs-datatable-paging-next]').disabled = info.page === info.pages - 1;
+        }
+
+        // After table initialization
+        updateCustomPagination(table);
+
+        // Bind to redraw events
+        table.on('draw', function () {
+            updateCustomPagination(table);
+        });
+
+        // Hook up Prev/Next buttons
+        document.querySelector('[data-hs-datatable-paging-prev]').addEventListener('click', () => {
+            table.page('previous').draw('page');
+        });
+        document.querySelector('[data-hs-datatable-paging-next]').addEventListener('click', () => {
+            table.page('next').draw('page');
+        });
+
+
 
         const buttons = document.querySelectorAll('#hs-dropdown-datatable-with-export .hs-dropdown-menu button');
         buttons.forEach((btn) => {

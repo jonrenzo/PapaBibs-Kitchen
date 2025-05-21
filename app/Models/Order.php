@@ -15,6 +15,7 @@ class Order extends Model
         'card_expiry',
         'card_cvc',
         'total',
+        'status_id',
     ];
 
     public function user()
