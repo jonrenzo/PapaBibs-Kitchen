@@ -1,5 +1,7 @@
 <x-layout>
 
+    <x-chat></x-chat>
+
     <!-- Hero Content -->
     <div class="h-[450px] bg-bibs-red relative">
         <!-- Background pattern layer -->
