@@ -21,6 +21,11 @@
                         </button>
                     </div>
                 </div>
+                @error('provider')
+                    <div class="text-red-500 text-sm mt-2">
+                        {{ $message }}
+                    </div>
+                @enderror
 
                 <div class="flex justify-between items-center text-sm mb-4">
                     <span></span>
