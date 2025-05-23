@@ -71,5 +71,23 @@ class OrderController extends Controller
 
         return redirect()->route('orders.success', $order->id);
     }
+
+    public function show($id)
+    {
+        $order = Order::with(['user', 'items', 'status'])->findOrFail($id);
+
+        if (empty($order->tracking_token)) {
+            $order->generateTrackingToken();
+        }
+
+        return view('orders.show', compact('order'));
+    }
+
+    public function track($id)
+    {
+        $order = Order::with(['user', 'items', 'status'])->findOrFail($id);
+
+        return view('orders.track', compact('order'));
+    }
 }
 

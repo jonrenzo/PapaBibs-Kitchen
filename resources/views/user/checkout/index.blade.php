@@ -21,6 +21,10 @@
 
                 <form action="{{ route('orders.store') }}" method="POST" id="checkout-form">
                     @csrf
+
+                    <!-- Hidden field for courier surcharge -->
+                    <input type="hidden" name="courier_surcharge" id="courier-surcharge" value="0">
+
                     <!-- Step 1: Customer Information -->
                     <div class="mb-6">
                         <div class="flex items-center mb-4">
@@ -203,9 +207,13 @@
                 </div>
 
                 <div class="border-t border-gray-200 pt-4 space-y-2">
+                    <div id="courier-additional-row" class="flex justify-between text-base font-medium text-gray-700 pt-2 hidden">
+                        <span>Courier Surcharge (Grab)</span>
+                        <span class="text-bibs-red">+ PHP 100.00</span>
+                    </div>
                     <div class="flex justify-between text-lg font-bold pt-2 border-t mt-2">
                         <span>Total</span>
-                        <span>
+                        <span id="order-total">
                             PHP {{ number_format(array_sum(array_map(function ($item) {
                                 return $item['price'] * $item['quantity'];
                             }, session('cart', []))), 2) }}
@@ -263,6 +271,37 @@
                     }
                 }
             });
+
+            // --- Add logic for courier affecting total and surcharge row ---
+            const courierSelect = document.querySelector('select[name="courier"]');
+            const orderTotalSpan = document.getElementById('order-total');
+            const courierAdditionalRow = document.getElementById('courier-additional-row');
+            const courierSurchargeInput = document.getElementById('courier-surcharge');
+            let baseTotal = {{ array_sum(array_map(function ($item) {
+                return $item['price'] * $item['quantity'];
+            }, session('cart', []))) }};
+
+            function updateTotal() {
+                let surcharge = 0;
+                let total = baseTotal;
+
+                if (courierSelect.value.toLowerCase() === 'grab') {
+                    surcharge = 100;
+                    total += surcharge;
+                    courierAdditionalRow.classList.remove('hidden');
+                } else {
+                    courierAdditionalRow.classList.add('hidden');
+                }
+
+                // Update the hidden input with surcharge amount
+                courierSurchargeInput.value = surcharge;
+
+                // Update displayed total
+                orderTotalSpan.textContent = 'PHP ' + total.toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            }
+
+            courierSelect.addEventListener('change', updateTotal);
+            updateTotal(); // Initialize on page load
         });
     </script>
 </x-layout>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
@@ -16,6 +17,7 @@ class Order extends Model
         'card_cvc',
         'total',
         'status_id',
+        'tracking_token',
     ];
 
     public function user()
@@ -31,6 +33,25 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($order) {
+            if (empty($order->tracking_token)) {
+                $order->tracking_token = Str::random(32);
+            }
+        });
+    }
+    public function generateTrackingToken()
+    {
+        if (empty($this->tracking_token)) {
+            $this->tracking_token = Str::random(32);
+            $this->save();
+        }
+        return $this->tracking_token;
     }
 
 }

@@ -50,9 +50,13 @@ Route::middleware('web')->group(function () {
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/orders/success/{order}', function ($orderId) {
         $order = Order::findOrFail($orderId);
+        if (empty($order->tracking_token)) {
+            $order->generateTrackingToken();
+        }
         return view('user.checkout.success', compact('order'));
     })->name('orders.success');
-    Route::view('/rate', 'user.checkout.rate')->name('checkout.rate');
+    Route::view('/rate', 'user.checkout.rate')->name('checkout.rate');// Your existing order route (where the QR code is displayed)
+    Route::get('/order/{id}/track', [OrderController::class, 'track'])->name('order.track');
 
     // Feedback
     Route::get('/feedback', fn() => view('user.feedback'));

@@ -1,4 +1,5 @@
 @php
+    use SimpleSoftwareIO\QrCode\Facades\QrCode;
     $statusOrder = ['processing', 'confirmed', 'delivering', 'received'];
     $currentStatus = $order->status->name ?? 'processing';
     $currentIndex = array_search($currentStatus, $statusOrder);
@@ -12,6 +13,9 @@
 
     $label = $order->status->label ?? 'Processing Order';
     $description = $order->status->description ?? 'Sending your order...';
+
+    // Create tracking URL for QR code
+    $trackingUrl = route('order.track', $order->id);
 @endphp
 
 <x-layout>
@@ -36,6 +40,32 @@
                     </div>
                 </div>
 
+                {{-- QR Code Section --}}
+                <div class="bg-white p-6 rounded-lg shadow mt-5">
+                    <div class="text-center">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Share Your Order</h3>
+                        <p class="text-sm text-gray-600 mb-4">Scan QR code to track this order from any device</p>
+
+                        <div class="inline-block p-4 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
+                            <!-- Display QR Code -->
+                            <div class="w-32 h-32 mx-auto bg-white flex items-center justify-center">
+                                {!! QrCode::size(128)->generate($trackingUrl) !!}
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <p class="text-xs text-gray-500 mb-2">Order #{{ str_pad($order->id, 6, '0', STR_PAD_LEFT) }}</p>
+                            <button class="inline-flex items-center gap-2 text-sm text-bibs-red hover:text-red-700 font-medium"
+                                   onclick="copyToClipboard('{{ $trackingUrl }}')">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                </svg>
+                                Copy tracking link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="space-y-4 mt-5">
                     <button class="w-full bg-white border border-gray-300 rounded-full py-2 font-semibold text-gray-700 shadow hover:bg-gray-50 transition">
                         Download Order Receipt
@@ -50,9 +80,7 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
 
             {{-- Order Receipt Panel --}}
             <div class="bg-white rounded-2xl shadow overflow-hidden w-[657px]">
@@ -69,7 +97,7 @@
 
                 <div class="p-6">
                     <h2 class="text-lg font-bold mb-2">Thanks for ordering at PapaBibs!</h2>
-                    <p class="text-gray-700 text-sm mb-6">Your payment was successful—thank you for choosing PapaBibs's Kitchen! We can’t wait to serve you more delicious bites.</p>
+                    <p class="text-gray-700 text-sm mb-6">Your payment was successful—thank you for choosing PapaBibs's Kitchen! We can't wait to serve you more delicious bites.</p>
 
                     <div class="grid grid-cols-2 text-sm mb-6">
                         <div>
@@ -119,7 +147,6 @@
         </div>
     </div>
 
-
     <div id="hs-scale-animation-modal" class="hs-overlay hidden size-full fixed top-0 start-0 z-80 overflow-x-hidden overflow-y-auto pointer-events-none" role="dialog" tabindex="-1" aria-labelledby="hs-scale-animation-modal-label">
         <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 scale-95 opacity-0 ease-in-out transition-all duration-200 sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-56px)] flex items-center">
             <div class="w-full flex flex-col bg-white shadow-2xs rounded-xl pointer-events-auto">
@@ -134,7 +161,7 @@
                 </div>
                 <div class="p-4 overflow-y-auto">
                     <p class="mt-1 text-gray-800">
-                        Your order is complete—thank you for dining with us!  We hope it brought a smile to your day. Feel free to leave a review or share your thoughts!
+                        Your order is complete—thank you for dining with us!  We hope it brought a smile to your day. Feel free to leave a review or share your thoughts!
                     </p>
                 </div>
                 <div class="flex justify-center items-center gap-x-2 py-3 px-4">
@@ -151,9 +178,17 @@
                         Rate us!
                     </a>
                 </div>
-
             </div>
         </div>
     </div>
 
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Tracking link copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
 </x-layout>

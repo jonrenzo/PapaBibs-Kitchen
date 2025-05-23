@@ -43,7 +43,7 @@
                                 <!-- Card -->
                                 <a href="/menu/{{ $product->id }}" class="bg-white border-2 border-dashed border-bibs-red rounded-lg shadow-lg p-4 pl-2 flex flex-col justify-between text-center h-[466px] w-[320px] m-7">
                                     <div class="flex flex-col items-center">
-                                        <img src="/{{ $product->image_location }}" alt="{{ $product->name }}" class="h-44 object-cover rounded-full mb-2">
+                                        <img src="/{{ $product->image_location }}" alt="{{ $product->name }}" class="h-44 object-cover rounded-full mb-2" loading="lazy">
                                         <div class="pl-4 mb-8">
                                             <h1 class="text-xl font-extrabold text-black text-left">{{ $product->name }}</h1>
                                             <p class="text-bibs-red font-normal mt-1 text-left">PHP {{ number_format($product->price, 2) }}</p>
