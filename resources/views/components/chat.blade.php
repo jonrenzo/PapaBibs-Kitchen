@@ -185,13 +185,13 @@
                 ],
                 faqs: {
                     "hours": "We're open Monday-Friday 9AM-6PM, Saturday 10AM-4PM, and closed on Sunday.",
-                    "location": "You can find us at 8539 Sandoval Ave, Pasig City,Metro Manila, 1602.",
-                    "contact": "You can reach us at 0925-510-0513 or (02)8721506 or papabibskitchenmain@gmail.com",
+                    "location": "You can find us at <a class='font-bold' href='https://www.google.com/maps/place/PapaBibs+Kitchen/@14.5491976,121.1031775,21z/data=!4m15!1m8!3m7!1s0x3397c64a8ec48381:0x98d815f1f6201faf!2sG4X3%2BP84,+8539+Sandoval+Ave,+Pasig,+1611+Metro+Manila!3b1!8m2!3d14.5491521!4d121.103228!16s%2Fg%2F11rg69404j!3m5!1s0x3397c79db41442b3:0xd31fcfd67ca240f!8m2!3d14.5492861!4d121.1032929!16s%2Fg%2F11t6wx2s1t?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D'>8539 Sandoval Ave, Pasig City, Metro Manila, 1602.</a>",
+                    "contact": "You can reach us at 0925-510-0513 or (02)8721506 or <a class='font-bold' href='https://mail.google.com/mail/?view=cm&to=papabibskitchenmain@gmail.com' target='_blank'>papabibskitchenmain@gmail.com</a>",
                     "services": "We offer various services including Food Delivery, Catering Services, Event Planning, and Online Ordering.",
                     "pricing": "All of our prices are shown in each dish's description. If you have any specific questions about pricing, feel free to ask!",
                     "payment": "We accept GCash,Cash on Delivery, Bank Transfer, and Credit/Debit Card payments.",
                     "order": "You can place an order through our website or by our facebook page. <a href='/register' class='font-bold'>Register</a> your email or <a href='/login' class='font-bold'>login</a> using Google or Facebook to get started.",
-                    "menu": "Hoy bakla anong cnasabe mo tongkol sakin. ha Bakla ayosin mo lng Hello ma’am,,menu PO natin for today,,. Binagoungan baboy na may talong. Sinigang na bangus dagupan. .adobong manok. Letchon paksiw Mebudo .igabo. At dinuguan. May monggo PO na may talbos NG amplaya,,"
+                    "menu": "Here's a link to our menu: <a href='/menu' class='font-bold'>Menu</a>. You can also ask about specific dishes or ingredients.",
                 }
             };
         }

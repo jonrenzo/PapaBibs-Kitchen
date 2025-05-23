@@ -1,4 +1,5 @@
 <x-layout>
+    <x-chat></x-chat>
     <div class="h-full pt-4 bg-gray-100">
         <!-- ========== HEADER ========== -->
         <header class="top-4 max-w-5xl inset-x-0 flex flex-wrap mx-auto   md:flex-nowrap z-50 w-full bg-white shadow-md rounded-full">

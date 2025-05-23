@@ -38,7 +38,7 @@
                 <div class="relative h-auto -mx-1">
                     <div class="hs-carousel-body m-5 flex flex-nowrap justify-center gap-x-4 transition-transform duration-700 hs-carousel-dragging:transition-none hs-carousel-dragging:cursor-grabbing">
                         @foreach($products->filter(fn($product) => $product->tags->contains('name', 'Bestseller')) as $product)
-                            <a href="/menu/{{$product->id}}" class="hs-carousel-slide px-1">
+                            <a href="/menu/{{$product->id}}" class="hs-carousel-slide px-1 flex flex-col justify-around items-center">
                                 <div class="h-[350px] w-[280px] bg-white rounded-xl shadow-lg p-4 flex flex-col items-center border-2 border-dashed border-bibs-red">
                                     <!-- Product Image -->
                                     <div class="w-36 rounded-full flex items-center justify-center">
@@ -61,6 +61,13 @@
                                     <p class="text-xs text-gray-700 text-left leading-relaxed font-parkinsans px-2 line-clamp-3 overflow-hidden">
                                         {{ $product->description }}
                                     </p>
+
+                                    <button
+                                        class="add-to-cart-btn transition-all duration-200 mt-2 rounded-2xl w-full bg-bibs-red text-white font-normal hover:bg-bibs-yellow hover:text-black py-2 px-4 mx-auto"
+                                        data-product-id="{{ $product->id }}"
+                                    >
+                                        Add to cart
+                                    </button>
                                 </div>
                             </a>
                         @endforeach

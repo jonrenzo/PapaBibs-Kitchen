@@ -1,5 +1,5 @@
 <div class="bg-black h-[500px] flex font-parkinsans">
-    <div class="p-16">
+    <div class="px-16 pt-5">
         <img class="h-52" src="{{ asset('images/Logo-Txt.png') }}">
         <h1 class="text-white font-parkinsans text-2xl">PapaBibs Kitchen,<strong> Double Sarap!</strong></h1>
         <p class="text-white font-parkinsans mt-10">
