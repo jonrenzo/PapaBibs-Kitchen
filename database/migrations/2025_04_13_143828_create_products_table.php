@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('prep_time');
             $table->string('serving');
-            $table->string('image_location');
+            $table->string('image_location')->nullable();
             $table->timestamps();
         });
     }

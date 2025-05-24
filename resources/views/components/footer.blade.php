@@ -1,25 +1,25 @@
-<div class="bg-black h-[500px] flex font-parkinsans">
-    <div class="px-16 pt-5">
-        <img class="h-52" src="{{ asset('images/Logo-Txt.png') }}">
-        <h1 class="text-white font-parkinsans text-2xl">PapaBibs Kitchen,<strong> Double Sarap!</strong></h1>
-        <p class="text-white font-parkinsans mt-10">
-            PapaBibs Kitchen began as a home-based business,<br>
-            serving delicious meals to friends and family.<br><br>
-            Now, we bring our passion for great food to more tables,<br>
+<div class="bg-black flex flex-col md:flex-row flex-wrap font-parkinsans py-8 md:py-12">
+    <div class="px-6 md:px-16 pt-5 w-full md:w-auto">
+        <img class="h-32 md:h-52" src="{{ asset('images/Logo-Txt.png') }}">
+        <h1 class="text-white font-parkinsans text-xl md:text-2xl">PapaBibs Kitchen,<strong> Double Sarap!</strong></h1>
+        <p class="text-white font-parkinsans mt-5 md:mt-10 text-sm md:text-base">
+            PapaBibs Kitchen began as a home-based business,<br class="hidden md:block">
+            serving delicious meals to friends and family.<br class="hidden md:block"><br class="hidden md:block">
+            Now, we bring our passion for great food to more tables,<br class="hidden md:block">
             guaranteeing double the sarap in every bite!
         </p>
     </div>
 
-    <div class="text-white flex flex-col p-24 m-2">
-        <a href="/">Home</a>
-        <a href="/menu" class="pt-2">Menu</a>
-        <a class="pt-2">About Us</a>
-        <a class="pt-2">Contact Us</a>
-        <a href="/feedback" class="pt-2">Send a Feedback</a>
-        <a href="/admin" class="pt-2 text-black">Admin</a>
+    <div class="text-white flex flex-col p-6 md:p-24 m-2 w-full md:w-auto">
+        <a href="/" class="py-1">Home</a>
+        <a href="/menu" class="py-1 md:pt-2">Menu</a>
+        <a class="py-1 md:pt-2">About Us</a>
+        <a class="py-1 md:pt-2">Contact Us</a>
+        <a href="/feedback" class="py-1 md:pt-2">Send a Feedback</a>
+        <a href="/admin" class="py-1 md:pt-2 text-black">Admin</a>
     </div>
 
-    <div class="text-white p-24">
+    <div class="text-white p-6 md:p-24 w-full md:w-auto">
         <h1 class="font-bold">Main Branch</h1>
 
         <p class="pt-2">
@@ -27,12 +27,12 @@
             Metro Manila, 1602
         </p>
 
-        <h1 class="font-bold pt-5">Hotlines</h1>
+        <h1 class="font-bold pt-4 md:pt-5">Hotlines</h1>
 
         <p class="pt-2">0925-510-0513</p>
         <p>0287215065</p>
 
-        <h1 class="font-bold pt-5">Email</h1>
+        <h1 class="font-bold pt-4 md:pt-5">Email</h1>
 
         <p class="pt-2">
             papabibskitchenmain@gmail.com
@@ -40,9 +40,9 @@
     </div>
 </div>
 
-<div class="h-[60px] bg-bibs-red flex justify-between items-center font-parkinsans">
-    <h1 class="text-white pl-5 font-bold">© PapaBibs Kitchen 2019</h1>
-    <div>
+<div class="bg-bibs-red flex flex-col md:flex-row justify-between items-center py-4 md:py-0 md:h-[60px] font-parkinsans px-4 md:px-0">
+    <h1 class="text-white text-sm md:text-base md:pl-5 font-bold text-center md:text-left mb-3 md:mb-0">© PapaBibs Kitchen 2019</h1>
+    <div class="flex justify-center md:justify-end">
         <a class="size-10 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-white hover:bg-white/10 focus:outline-hidden focus:bg-white/10 disabled:opacity-50 disabled:pointer-events-none" href="#">
             <svg class="size-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
@@ -59,5 +59,4 @@
             </svg>
         </a>
     </div>
-
 </div>
